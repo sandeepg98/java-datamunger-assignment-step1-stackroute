@@ -6,11 +6,11 @@ String Parsing  (Query string)
 
 a. Write a program to read the query string as input from the user and parse the given string into word
 
-Input : 	select * from Employee.csv  where  department  = ‘HR’ and salary>=3000
+    Input : 	select * from Employee.csv  where  department  = ‘HR’ and salary>=3000
 
-Output: 	[select ,*, from, Employee.csv,  where,  department,  =, ‘HR’, and, salary,>=,3000]
+    Output: 	[select ,*, from, Employee.csv,  where,  department,  =, ‘HR’, and, salary,>=,3000]
 
-Note:  If the query contains group by, order by, having should also fetch
+    Note:  If the query contains group by, order by, having should also fetch
 
 b. Write a program to extract only the parts of query
 
