@@ -92,8 +92,8 @@ The folders and files you see in this repositories, is how it is expected to be 
 	|
 	├── resources 			        // If project needs any data file, it can be found here/placed here, if data is huge they can be mounted, no need put it in your repository
 	|
-	├── com.stackroute.datamunger	// all your java file will be stored in this package
-	|	└── test		            // all your test cases are written using JUnit, these test cases can be run by selecting Run As -> JUnit Test 
+	├── com.stackroute.datamunger	    // all your java file will be stored in this package
+	|	└── test		                // all your test cases are written using JUnit, these test cases can be run by selecting Run As -> JUnit Test 
 	|	└── DataMunger.java	        // This is the main file, all your logic is written in this file only
 	|
 	├── .classpath			        // This file is generated automatically while creating the project in eclipse
