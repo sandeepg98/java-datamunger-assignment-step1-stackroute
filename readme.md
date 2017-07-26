@@ -22,7 +22,7 @@ b. Write a program to extract only the parts of query
 		Note: where condition part should not contain group by, order by, having parts.
 
 	iii. Parse the Where condition part based on to the operators
-		1. Relational Operators
+		1. `Relational Operators`
 			a. Ex: if where condition is :   department  = ‘HR’ and salary>=3000
 			b. The output should be
 				i. Restriction - 1
@@ -34,25 +34,25 @@ b. Write a program to extract only the parts of query
 					2. properyValue : 3000
 					3. condtionalOperator : >=
 
-		2. Logical Operators
+		2. `Logical Operators`
 			a. Ex: if where condition is : department='Dev'  or department='HR' and salary>=3000 
 				i. Extract the logical operators in sequence and display/store in collection	
 					Output : [or,and]
 
-		3. Order by Operators
+		3. `Order by Operators`
 			a. Ex query : select  *  from emp order by salary
 			b. The output should be
 				i. Order by field :   salary
 			c. Note:  ‘where’ may present in the query.
 
 
-        4. Group by Operators
+        4. `Group by Operators`
 		    a. Ex Query : select * from emp group by department
 		    b. The output should be
 			    i. Group by field : department
 		    Note: ‘where’ may present in the query.
 
-	    5. Aggregate functions
+	    5. `Aggregate functions`
 		    a. Ex: Query: select max(sal), min(age),count(*) from emp
 			    i. The output should be
 				    1. Aggregate function - 1
@@ -68,7 +68,7 @@ b. Write a program to extract only the parts of query
 
 ### Expected solution
 
-Displaying various components/parts of the query like selected fields, conditional parts, aggregate fields, groupBy field, OrderBy field 
+Displaying various `components/parts` of the query like `selected fields, conditional parts, aggregate fields, groupBy field, OrderBy field` 
 
 ### Following are the broad tasks:
 - read the query from the user into queryString variable
