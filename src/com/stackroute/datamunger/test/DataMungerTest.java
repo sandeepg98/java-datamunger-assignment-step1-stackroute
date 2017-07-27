@@ -19,72 +19,66 @@ public class DataMungerTest {
 	
 	@Test
 	public void selectAllTestCase() {
-		System.out.println("==============================");
-		dataMunger.parseQuery("select * from employee.csv");
+		display();
+		dataMunger.parseQuery("select * from ipl.csv");
 	}
 	
 	@Test
 	public void selectColumnsTestCase() {
-		System.out.println("==============================");
-		dataMunger.parseQuery("select name,salary from employee.csv");
+		display();
+		dataMunger.parseQuery("select city,winner,team1,team2 from ipl.csv");
 	}
 	
 	@Test
 	public void selectColumnsWithWhereTestCase() {
-		System.out.println("==============================");
-		dataMunger.parseQuery("select name,salary from employee.csv where department='HR'");
+		display();
+		dataMunger.parseQuery("select city,winner,player_match from ipl.csv where season > 2014");
 	}
 	
 	@Test
 	public void selectColumnsWithMultipleWhereAndTestCase() {
-		System.out.println("==============================");
-		dataMunger.parseQuery("select name,salary from employee.csv where department='HR' and salary>30000");
+		display();
+		dataMunger.parseQuery("select city,winner,player_match from ipl.csv where season > 2014 and city ='Bangalore'");
 		
 	}
 	
 	@Test
 	public void selectColumnsWithMultipleWhereOrTestCase() {
-		System.out.println("==============================");
-		dataMunger.parseQuery("select name,salary from employee.csv where department='HR' or salary>30000");
+		display();
+		dataMunger.parseQuery("select city,winner,player_match from ipl.csv where season > 2014 or city ='Bangalore'");
 		
 	}
 	
 	@Test
 	public void selectColumnsWithThreeWhereOrTestCase() {
-		System.out.println("==============================");
-		dataMunger.parseQuery("select name,salary from employee.csv where department='HR' or salary>30000 and city='Bangalore'");
+		display();
+		dataMunger.parseQuery("select city,winner,player_match from ipl.csv where season > 2014 and city ='Bangalore' or city ='Delhi'");
 		
 	}
 	
 	@Test
 	public void selectColumnsWithMultipleWhereGroupByTestCase() {
-		System.out.println("==============================");
-		dataMunger.parseQuery("select city,count(*) from employee.csv where department='HR' and salary>30000 group by city");
+		display();
+		dataMunger.parseQuery("select city,winner,player_match from ipl.csv where season > 2014 and city ='Bangalore' group by winner");
 		
 	}
 	
 	@Test
 	public void selectWithGroupByTestCase() {
-		System.out.println("==============================");
-		dataMunger.parseQuery("select city,count(*) from employee.csv group by city");
-		
+		display();
+		dataMunger.parseQuery("select city,winner,player_match from ipl.csv group by winner");
 	}
 	
 	@Test
 	public void selectColumnsWithMultipleWhereAndOrderByTestCase() {
-		System.out.println("==============================");
-		dataMunger.parseQuery("select city,name,dept from employee.csv where department='HR' and salary>30000 order by city");
+		display();
+		dataMunger.parseQuery("select city,winner,player_match from ipl.csv where season > 2014 and city ='Bangalore' order by city");
 		
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
+	private void display() {
+		System.out.println("================================================================");
+	}
 	
 	
 }
