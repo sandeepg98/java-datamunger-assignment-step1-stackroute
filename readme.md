@@ -52,36 +52,61 @@ b. Further enhance your program to now extract certain parts of the same query:
 		Input String : select * from Employee.csv  where  department  = ‘HR’ and salary>=3000
 		Output String : department  = ‘HR’ and salary>=3000
 
-	iii. Parse the Where condition part based on to the operators and display the `propertyName, propertyValue and conditionalOperator` for each conditions
-		1. Relational Operators
-			a. Ex: if where condition is :   `department  = ‘HR’ and salary >= 3000`
-			b. The output String should be
-				i. Restriction - 1
-					1. propertyName : department
-					2. properyValue : HR
-					3. condtionalOperator : = 
-				ii. Restriction - 2
-					1. propertyName : salary
-					2. properyValue : 3000
-					3. condtionalOperator : >=
+	iii. As there will be multiple conditions, seperate each condition and display in different line.
+	    
+	    Input String : select * from Employee.csv  where  department  = ‘HR’ and salary>=3000
+		Output String : 
+	                	Condition 1 : department  = ‘HR’ 
+		                Condition 2 : salary>=3000
+		                
+	iv. Split the condition part into variable (before relational operator) and value (after relational operator) and operator.
+	    Note: relationa operators are `<, <=, >, >=, =, !=`
+	
+	    Input String : select * from Employee.csv  where  department  = ‘HR’ and salary>=3000
+		Output String : 
+	                	Condition 1 : 
+	                	    variable : department
+	                	    operator : = 
+	                	    value    : ‘HR’ 
+		                Condition 2 : 
+	                        variable : salary
+	                        operator : >=
+	                        value    : 3000
+	                        
+	v. Extract the logical operators in sequence from the given query string. 
+	    Note: Logical operators are `and, or, not`
+	    
+	    Input String : select * from Employee.csv  where  department = ‘HR’ or department = 'Dev' and salary>=3000
+		Output String : 
+		        operator 1: or
+		        operator 2: and
+		        
+	vi. Extract the selected fields/information from the given query.
+	
+	    Input String : select id, name, salary from Employee.csv  where  department = ‘HR’ or department = 'Dev' and salary>=3000
+		Output String :
+            	id
+            	name
+            	salary
+    
+    vii. Extract the order by field from the given string.
+        
+        Note : user may need the information in sorted order of a particular field.
+        
+        Input String : select * from Employee.csv  where  order by salary
+		Output String : salary
+    
+    viii. Extract the group by field from the given string.
+        
+        Note : user may need the related information grouped together.
+        For Example they may require to see the information department wise.
+        
+        Input String : select * from Employee.csv  where group by department
+		Output String : department
+	
+	ix. 	
 
-		2. Get the Logical Operators (applicable only if multiple conditions exists)
-			a. Ex: if where condition is : `department='Dev' or department='HR' and salary>=3000`
-				i. Extract the logical operators in sequence and display/store in collection	
-					Output String : [or,and]
-
-		3. Get order by fields if Order by Operators exists
-			a. Ex query : select  *  from emp order by salary
-			b. The output String should be
-				i. Order by field :   salary
-			Note:  ‘where’ may present in the query.
-
-
-        4. Get group by fields if Group by Operators exists
-		    a. Ex Query : `select * from emp group by department`
-		    b. The output String should be
-			    i. Group by field : department
-		    Note: ‘where’ may present in the query.
+        
 
 	    5. Parse and diaplay the Aggregate functions
 		    a. Ex: Query: `select max(sal), min(age),count(*) from emp`
