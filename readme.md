@@ -2,10 +2,10 @@
 
 ### Problem Statement
 
-As an initial step of building a Utility to get meaningful information out of our Raw data - as a first step you should be able to parse (decipher) our question. In our computing terms, we call this
-a query. Our system should be able to interpret this and break it into several parts - so that necessary actions can be triggered to fetch the required information in the proper format.
+As an initial step of building a Utility to get meaningful information out of our Raw data - ##as a first step you should be able to parse (decipher) our question. In our computing terms, we call this
+a query.## Our system should be able to interpret this and break it into several parts - so that necessary actions can be triggered to fetch the required information in the proper format.
 
-STEP 1 - Deciphering the parts of the String (Query)
+###STEP 1 - Deciphering the parts of the String (Query)
 
 Please note that the End User interacting with this utility will give out English like instructions and would expect the system to respond with necessary information. The system perceives this a
 String of characters and we should be manipulate and break this string into appropriate Data Structures. For Instance,
