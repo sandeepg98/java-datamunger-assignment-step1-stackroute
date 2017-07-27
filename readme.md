@@ -23,7 +23,7 @@ EXPLANATION OF PARTS OF A QUERY HERE
 
 ## Our STEP 1 involves two tasks, given below:
 
-a. Write a program to read the query string as input from the user and split them into words and print the output on console as given below:
+a. Write a program to read the query string as input and split them into words. Print the output on console as given below:
 
     Input String : 	select * from ipl.csv where season > 2014 and city ='Bangalore'
     
