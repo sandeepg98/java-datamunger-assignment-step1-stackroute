@@ -23,7 +23,7 @@ EXPLANATION OF PARTS OF A QUERY HERE
 
 ## Our STEP 1 involves two tasks, given below:
 
-a. Write a program to read the query string as input from the user and parse the given string and print the output on console as given below:
+a. Write a program to read the query string as input from the user and split them into words and print the output on console as given below:
 
     Input String : 	select * from Employee.csv  where  department  = ‘HR’ and salary>=3000
 
@@ -42,26 +42,15 @@ a. Write a program to read the query string as input from the user and parse the
 
 b. Further enhance your program to now extract certain parts of the same query:
 
-	i.  Get only base part(EXPLAINED ABOVE) of the query from the given query string i.e. minus the `*where*` condition. 
+	i.  Get only base part(before `where` word) of the query from the given query string. 
 
 		Input String : select * from Employee.csv where  department  = ‘HR’ and salary>=3000
 		Output String : select * from Employee.csv
 
-	ii. Fetch the `*where*` condition(EXPLAINED ABOVE) separately from the given query.
+	ii. Get only filter part(after `where` word) of the query from the given query string. 
 	
 		Input String : select * from Employee.csv  where  department  = ‘HR’ and salary>=3000
 		Output String : department  = ‘HR’ and salary>=3000
-	
-		Note: where condition part should not contain group by, order by, having parts.
-		
-b. Write a program to extract only the parts of query
-
-	i.  Get only base query from the query string. (without where condition)
-		Example : select * from Employee.csv  
-
-	ii. Get only where condition part from the query
-		Example : department  = ‘HR’ and salary>=3000
-		Note: where condition part should not contain group by, order by, having parts.
 
 	iii. Parse the Where condition part based on to the operators and display the `propertyName, propertyValue and conditionalOperator` for each conditions
 		1. Relational Operators
