@@ -41,12 +41,12 @@ a. Write a program to read the query string as input from the user and parse the
 
 b. Further enhance your program to now extract certain parts of the same query:
 
-	i.  Get only base part(EXPLAINED ABOVE) of the query from the given query string i.e. minus the *where* condition. 
+	i.  Get only base part(EXPLAINED ABOVE) of the query from the given query string i.e. minus the `*where*` condition. 
 
 		Input String : select * from Employee.csv where  department  = ‘HR’ and salary>=3000
 		Output String : select * from Employee.csv
 
-	ii. Fetch the *where* condition(EXPLAINED ABOVE) separately from the given query.
+	ii. Fetch the `*where*` condition(EXPLAINED ABOVE) separately from the given query.
 	
 		Input String : select * from Employee.csv  where  department  = ‘HR’ and salary>=3000
 		Output String : department  = ‘HR’ and salary>=3000
@@ -62,10 +62,10 @@ b. Write a program to extract only the parts of query
 		Example : department  = ‘HR’ and salary>=3000
 		Note: where condition part should not contain group by, order by, having parts.
 
-	iii. Parse the Where condition part based on to the operators
+	iii. Parse the Where condition part based on to the operators and display the `propertyName, propertyValue and conditionalOperator` for each conditions
 		1. Relational Operators
-			a. Ex: if where condition is :   department  = ‘HR’ and salary>=3000
-			b. The output should be
+			a. Ex: if where condition is :   `department  = ‘HR’ and salary >= 3000`
+			b. The output String should be
 				i. Restriction - 1
 					1. propertyName : department
 					2. properyValue : HR
@@ -75,27 +75,27 @@ b. Write a program to extract only the parts of query
 					2. properyValue : 3000
 					3. condtionalOperator : >=
 
-		2. Logical Operators
-			a. Ex: if where condition is : department='Dev'  or department='HR' and salary>=3000 
+		2. Get the Logical Operators (applicable only if multiple conditions exists)
+			a. Ex: if where condition is : `department='Dev' or department='HR' and salary>=3000`
 				i. Extract the logical operators in sequence and display/store in collection	
 					Output String : [or,and]
 
-		3. Order by Operators
+		3. Get order by fields if Order by Operators exists
 			a. Ex query : select  *  from emp order by salary
-			b. The output should be
+			b. The output String should be
 				i. Order by field :   salary
-			c. Note:  ‘where’ may present in the query.
+			Note:  ‘where’ may present in the query.
 
 
-        4. Group by Operators
-		    a. Ex Query : select * from emp group by department
-		    b. The output should be
+        4. Get group by fields if Group by Operators exists
+		    a. Ex Query : `select * from emp group by department`
+		    b. The output String should be
 			    i. Group by field : department
 		    Note: ‘where’ may present in the query.
 
-	    5. Aggregate functions
-		    a. Ex: Query: select max(sal), min(age),count(*) from emp
-			    i. The output should be
+	    5. Parse and diaplay the Aggregate functions
+		    a. Ex: Query: `select max(sal), min(age),count(*) from emp`
+			    i. The output String should be
 				    1. Aggregate function - 1
 					    a. Function name : max
 					    b. Field name        : sal
@@ -110,20 +110,6 @@ b. Write a program to extract only the parts of query
 ### Expected solution
 
 Displaying various `components/parts` of the query like `selected fields, conditional parts, aggregate fields, groupBy field, OrderBy field` 
-
-### Following are the broad tasks:
-- read the query from the user into queryString variable
-- call the parseQuery method and pass the queryString variable as a parameter
-- split the string into words by space character
-- parse the queryString into words and display
-- getting the baseQuery and display
-- get and display the filename
-- get and display the where conditions part(if where condition exists)
-- parse the where conditions and display the propertyName, propertyValue and conditionalOperator for each conditions
-- get the logical operators(applicable only if multiple conditions exist)
-- get order by fields if order by clause exists
-- get group by fields if group by clause exists
-- parse and display aggregate functions(if applicable)
 
 ### Project structure
 
