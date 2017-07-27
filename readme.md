@@ -76,10 +76,10 @@ b. Further enhance your program to now extract certain parts of the same query:
 	v. Extract the logical operators in sequence from the given query string. 
 	    Note: Logical operators are "and, or, not"
 	    
-	    Input String : select * from ipl.csv where season > 2014 and city ='Bangalore'
-		Output String : 
+	    Input String : select season,winner,player_match from ipl.csv where season > 2014 and city ='Bangalore' or date > 31-12-2014;
+	    Output String : 
 		        operator 1: and
-		        operator 2: 
+		        operator 2: or
 		        
 	vi. Extract the selected fields/information from the given query.
 	
