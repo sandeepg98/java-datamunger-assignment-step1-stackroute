@@ -17,7 +17,18 @@ String of characters and we should be manipulate and break this string into appr
 <SAMPLE DATA - TABLE>
 
 -----------
-EXPLANATION OF PARTS OF A QUERY HERE
+Few terms need to understand before starting the project.
+select ->  get the required information
+'*' ->  select all the fields 
+where ->  filter result
+order by ->  sort the result based on particular field
+group by ->  get the records together based  on particular field.
+aggregate ->  There are 5 aggregates are there called sum,count,min,max,avg.  
+
+Example query string :  select season,winner,player_match from ipl.csv where season > 2014 and city ='Bangalore';
+fetching the season, winner and  player of the match 
+from the file ipl.csv  (csv -> Comma Separated Value)
+where - filter the results. Get the details of the matches played in Bangalore after season 2014
 
 -----------
 
@@ -92,19 +103,19 @@ b. Further enhance your program to now extract certain parts of the same query:
     vii. Extract the order by field from the given string.
         Note : user may need the information in sorted order of a particular field.
         
-        Input String : select * from ipl.csv where season > 2016 and city='Bangalore' order by city
-		Output String : city
+        Input String : select * from ipl.csv where season > 2016 and city='Bangalore' order by win_by_runs
+		Output String : win_by_runs
     
     viii. Extract the group by field from the given string.
         Note : user may need the related information grouped together.
         For Example they may require to see the information department wise.
         
-        Input String : select * from ipl.csv where season > 2016 and city='Bangalore' group by winner 
-		Output String : winner
+        Input String : select team1, sum(win_by_runs) from ipl.csv where season > 2016 and city='Bangalore' group by team1
+		Output String : team1
 	
 	ix. User may required the information like who is getting maximum salary or minimum age etc.. these are called aggregate functions (minimum, maximum, count, average, sum)
 	
-	    Input String : select city,winner,avg(win_by_wickets),min(win_by_runs),max(season) from ipl.csv where season > 2014 and city ='Bangalore'
+	    Input String : select avg(win_by_wickets),min(win_by_runs) from ipl.csv 
 		Output String : 
 		        Aggregate 1
 		            Aggregate Name  : avg
@@ -114,11 +125,7 @@ b. Further enhance your program to now extract certain parts of the same query:
 		            Aggregate Name  : min
 		            Aggregate Field : win_by_runs
 	            
-	            Aggregate 3
-		            Aggregate Name  : max
-		            Aggregate Field : season
-	
-		Note:  Other parts like where clause, order by, group by may be present in the query.
+	   	Note:  Other parts like where clause, order by, group by may be present in the query.
 
 ### Expected solution
 
