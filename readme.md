@@ -7,7 +7,7 @@ In our computing terms, we call this a query.`Our system should be able to inter
 
 ### STEP 1 - Deciphering the parts of the String (Query)
 
-Please note that the End User interacting with this utility will give out `SQL` like instructions and would expect the system to respond with necessary information. The system perceives this a
+Please note that the End User interacting with this utility will give out `SQL` like instructions and would expect the system to respond with necessary information. The system perceives this as a
 String of characters and we should manipulate and break this string into appropriate Data Structures. For Instance,
 
 <Q1> 
