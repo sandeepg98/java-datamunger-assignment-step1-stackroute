@@ -2,16 +2,57 @@
 
 ### Problem Statement
 
-String Parsing  (Query string)
+As an initial step of building a Utility to get meaningful information out of our Raw data - as a first step you should be able to parse (decipher) our question. In our computing terms, we call this
+a query. Our system should be able to interpret this and break it into several parts - so that necessary actions can be triggered to fetch the required information in the proper format.
 
-a. Write a program to read the query string as input from the user and parse the given string into word
+STEP 1 - Deciphering the parts of the String (Query)
 
-    Input : 	select * from Employee.csv  where  department  = ‘HR’ and salary>=3000
+Please note that the End User interacting with this utility will give out English like instructions and would expect the system to respond with necessary information. The system perceives this a
+String of characters and we should be manipulate and break this string into appropriate Data Structures. For Instance,
 
-    Output: 	[select ,*, from, Employee.csv,  where,  department,  =, ‘HR’, and, salary,>=,3000]
+<Q1> 
+<SAMPLE DATA - TABLE> 
 
-    Note:  If the query contains group by, order by, having should also fetch
+<Q2> 
+<SAMPLE DATA - TABLE>
 
+-----------
+EXPLANATION OF PARTS OF A QUERY HERE
+
+-----------
+Our STEP 1 involves two tasks, given below:
+
+a. Write a program to read the query string as input from the user and parse the given string and print the output on console as given below:
+
+    Input String : 	select * from Employee.csv  where  department  = ‘HR’ and salary>=3000
+
+    Output String: 	select
+    			    * 
+    			    from 
+    			    Employee.csv  
+    			    where  
+    			    department  
+    			    = 
+    			    'HR'
+    			    and 
+    			    salary
+    			    >=
+    			    3000
+
+b. Further enhance your program to now extract certain parts of the same query:
+
+	i.  Get only base part(EXPLAINED ABOVE) of the query from the given query string i.e. minus the *where* condition. 
+
+		Input String : select * from Employee.csv where  department  = ‘HR’ and salary>=3000
+		Output String : select * from Employee.csv
+
+	ii. Fetch the *where* condition(EXPLAINED ABOVE) separately from the given query.
+	
+		Input String : select * from Employee.csv  where  department  = ‘HR’ and salary>=3000
+		Output String : department  = ‘HR’ and salary>=3000
+	
+		Note: where condition part should not contain group by, order by, having parts.
+		
 b. Write a program to extract only the parts of query
 
 	i.  Get only base query from the query string. (without where condition)
@@ -37,7 +78,7 @@ b. Write a program to extract only the parts of query
 		2. Logical Operators
 			a. Ex: if where condition is : department='Dev'  or department='HR' and salary>=3000 
 				i. Extract the logical operators in sequence and display/store in collection	
-					Output : [or,and]
+					Output String : [or,and]
 
 		3. Order by Operators
 			a. Ex query : select  *  from emp order by salary
