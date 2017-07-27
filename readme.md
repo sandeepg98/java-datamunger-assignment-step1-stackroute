@@ -60,7 +60,7 @@ b. Further enhance your program to now extract certain parts of the same query:
 		                Condition 2 : salary>=3000
 		                
 	iv. Split the condition part into variable (before relational operator) and value (after relational operator) and operator.
-	    Note: relationa operators are `<, <=, >, >=, =, !=`
+	    Note: relationa operators are "<, <=, >, >=, =, !="
 	
 	    Input String : select * from Employee.csv  where  department  = ‘HR’ and salary>=3000
 		Output String : 
@@ -74,7 +74,7 @@ b. Further enhance your program to now extract certain parts of the same query:
 	                        value    : 3000
 	                        
 	v. Extract the logical operators in sequence from the given query string. 
-	    Note: Logical operators are `and, or, not`
+	    Note: Logical operators are "and, or, not"
 	    
 	    Input String : select * from Employee.csv  where  department = ‘HR’ or department = 'Dev' and salary>=3000
 		Output String : 
@@ -90,36 +90,34 @@ b. Further enhance your program to now extract certain parts of the same query:
             	salary
     
     vii. Extract the order by field from the given string.
-        
         Note : user may need the information in sorted order of a particular field.
         
         Input String : select * from Employee.csv  where  order by salary
 		Output String : salary
     
     viii. Extract the group by field from the given string.
-        
         Note : user may need the related information grouped together.
         For Example they may require to see the information department wise.
         
         Input String : select * from Employee.csv  where group by department
 		Output String : department
 	
-	ix. 	
-
-        
-
-	    5. Parse and diaplay the Aggregate functions
-		    a. Ex: Query: `select max(sal), min(age),count(*) from emp`
-			    i. The output String should be
-				    1. Aggregate function - 1
-					    a. Function name : max
-					    b. Field name        : sal
-				    2.  Aggregate function - 2
-					    a. Function name : min
-					    b. Field name        : age
-				    3.  Aggregate function - 3
-					    a. Function name : count
-					    b. Field name : *
+	ix. User may required the information like who is getting maximum salary or minimum age etc.. these are called aggregate functions (minimum, maximum, count, average, sum)
+	
+	    Input String : select count(id), min(age), max(salary) from Employee.csv
+		Output String : 
+		        Aggregate 1
+		            Aggregate Name  : count
+		            Aggregate Field : id
+	            
+	            Aggregate 2
+		            Aggregate Name  : min
+		            Aggregate Field : age
+	            
+	            Aggregate 3
+		            Aggregate Name  : max
+		            Aggregate Field : salary
+	
 		Note:  Other parts like where clause, order by, group by may be present in the query.
 
 ### Expected solution
