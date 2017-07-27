@@ -18,16 +18,25 @@ String of characters and we should be manipulate and break this string into appr
 
 -----------
 Few terms need to understand before starting the project.
+
 select ->  get the required information
+
 '*' ->  select all the fields 
+
 where ->  filter result
+
 order by ->  sort the result based on particular field
+
 group by ->  get the records together based  on particular field.
+
 aggregate ->  There are 5 aggregates are there called sum,count,min,max,avg.  
 
 Example query string :  select season,winner,player_match from ipl.csv where season > 2014 and city ='Bangalore';
+
 fetching the season, winner and  player of the match 
+
 from the file ipl.csv  (csv -> Comma Separated Value)
+
 where - filter the results. Get the details of the matches played in Bangalore after season 2014
 
 -----------
@@ -87,7 +96,7 @@ b. Further enhance your program to now extract certain parts of the same query:
 	v. Extract the logical operators in sequence from the given query string. 
 	    Note: Logical operators are "and, or, not"
 	    
-	    Input String : select season,winner,player_match from ipl.csv where season > 2014 and city ='Bangalore' or date > 31-12-2014;
+	    Input String : select season,winner,player_match from ipl.csv where season > 2014 and city ='Bangalore' or date > '31-12-2014';
 	    Output String : 
 		        operator 1: and
 		        operator 2: or
