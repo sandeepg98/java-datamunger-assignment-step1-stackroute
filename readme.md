@@ -19,19 +19,19 @@ String of characters and we should be manipulate and break this string into appr
 -----------
 Few terms need to understand before starting the project.
 
-1. select ->  get the required information
+    1. select ->  get the required information
 
-2. '*' ->  select all the fields 
+    2. '*' ->  select all the fields 
 
-3. where ->  filter result
+    3. where ->  filter result
 
-4. order by ->  sort the result based on particular field
+    4. order by ->  sort the result based on particular field
 
-5. group by ->  get the records together based  on particular field.
+    5. group by ->  get the records together based  on particular field.
 
-6. aggregate ->  There are 5 aggregates are there called sum,count,min,max,avg.  
+    6. aggregate ->  There are 5 aggregates are there called sum,count,min,max,avg.  
 
-7. Example query string :  select season,winner,player_match from ipl.csv where season > 2014 and city ='Bangalore';
+    7. Example query string :  select season,winner,player_match from ipl.csv where season > 2014 and city ='Bangalore';
 
         a. fetching the season, winner and  player of the match 
 
