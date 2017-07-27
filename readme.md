@@ -70,7 +70,7 @@ b. Further enhance your program to now extract certain parts of the same query:
 	                	    value    : 2014 
 		                Condition 2 : 
 	                        variable : city
-	                        operator : >
+	                        operator : =
 	                        value    : 'Bangalore'
 	                        
 	v. Extract the logical operators in sequence from the given query string. 
