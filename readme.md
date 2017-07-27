@@ -20,7 +20,8 @@ String of characters and we should be manipulate and break this string into appr
 EXPLANATION OF PARTS OF A QUERY HERE
 
 -----------
-Our STEP 1 involves two tasks, given below:
+
+## Our STEP 1 involves two tasks, given below:
 
 a. Write a program to read the query string as input from the user and parse the given string and print the output on console as given below:
 
