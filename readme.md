@@ -16,8 +16,11 @@ Sample Data:
 
     winner                           count
 Kings XI Punjab                        1
+
 Kolkata Knight Riders                  1
+
 Rajasthan Royals                       1
+
 Royal Challengers Bangalore            3
 
 
