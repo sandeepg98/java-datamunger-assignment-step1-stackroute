@@ -10,11 +10,28 @@ In our computing terms, we call this a query.`Our system should be able to inter
 Please note that the End User interacting with this utility will give out `SQL` like instructions and would expect the system to respond with necessary information. The system perceives this as a
 String of characters and we should manipulate and break this string into appropriate Data Structures. For Instance,
 
-<Q1> 
-<SAMPLE DATA - TABLE> 
+Query: SELECT winner, Count( winner ) FROM ipl.csv WHERE win_by_runs > 100 GROUP BY winner ORDER BY winner;
 
-<Q2> 
-<SAMPLE DATA - TABLE>
+Sample Data: 
+
+    winner                           count
+
+Kings XI Punjab                        1
+
+Kolkata Knight Riders                  1
+
+Rajasthan Royals                       1
+
+Royal Challengers Bangalore            3
+
+
+Query: SELECT city, winner FROM ipl.csv WHERE winner='Chennai Super Kings' AND city ='Abu Dhabi' AND season=2014;
+
+Sample Data: 
+
+    city                    winner
+    
+Abu Dhabi           Chennai Super Kings
 
 -----------
 Few terms need to understand before starting the project.
@@ -88,7 +105,7 @@ b. Further enhance your program to now extract certain parts of the same query:
 		                Condition 2 : city = 'Bangalore'
 		                
 	v. Split the condition part into variable (before relational operator) and value (after relational operator) and operator.
-	    Note: relationa operators are "<, <=, >, >=, =, !="
+	    Note: relational operators are "<, <=, >, >=, =, !="
 	
 	    Input String : select * from ipl.csv where season > 2014 and city ='Bangalore';
 		Output String : 
