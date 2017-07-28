@@ -15,13 +15,9 @@ Query: SELECT winner, Count( winner ) FROM ipl.csv WHERE win_by_runs > 100 GROUP
 Sample Data: 
 
     winner                           count
-
 Kings XI Punjab                        1
-
 Kolkata Knight Riders                  1
-
 Rajasthan Royals                       1
-
 Royal Challengers Bangalore            3
 
 
@@ -30,7 +26,6 @@ Query: SELECT city, winner FROM ipl.csv WHERE winner='Chennai Super Kings' AND c
 Sample Data: 
 
     city                    winner
-    
 Abu Dhabi           Chennai Super Kings
 
 -----------
