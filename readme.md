@@ -12,22 +12,14 @@ String of characters and we should manipulate and break this string into appropr
 
 Query: SELECT winner, Count( winner ) FROM ipl.csv WHERE win_by_runs > 100 GROUP BY winner ORDER BY winner;
 
-| Left align | Right align | Center align |
-|:-----------|------------:|:------------:|
-| This       |        This |     This     
-| column     |      column |    column    
-| will       |        will |     will     
-| be         |          be |      be      
-| left       |       right |    center    
-| aligned    |     aligned |   aligned
 Sample Data: 
 
-|    winner                    |       count    |
-|:-----------------------------|---------------:|
-|Kings XI Punjab               |        1       |     
-|Kolkata Knight Riders         |        1       |
-|Rajasthan Royals              |        1       |
-|Royal Challengers Bangalore   |        3       |
+|    winner                   |  count    |
+|:----------------------------|----------:|
+|Kings XI Punjab              |   1       |     
+|Kolkata Knight Riders        |   1       |
+|Rajasthan Royals             |   1       |
+|Royal Challengers Bangalore  |   3       |
 
 
 Query: SELECT city, winner FROM ipl.csv WHERE winner='Chennai Super Kings' AND city ='Abu Dhabi' AND season=2014;
