@@ -26,8 +26,9 @@ Query: SELECT city, winner FROM ipl.csv WHERE winner='Chennai Super Kings' AND c
 
 Sample Data: 
 
-    city                    winner
-Abu Dhabi           Chennai Super Kings
+|    city      |  winner            |
+|:-------------|-------------------:|
+|Abu Dhabi     | Chennai Super Kings|
 
 -----------
 Few terms need to understand before starting the project.
