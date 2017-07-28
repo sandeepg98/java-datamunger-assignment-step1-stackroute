@@ -10,7 +10,7 @@ In our computing terms, we call this a query.`Our system should be able to inter
 Please note that the End User interacting with this utility will give out `SQL` like instructions and would expect the system to respond with necessary information. The system perceives this as a
 String of characters and we should manipulate and break this string into appropriate Data Structures. For Instance,
 
-Query: SELECT winner, Count( winner ) FROM ipl.csv WHERE win_by_runs > 100 GROUP BY winner ORDER BY winner;
+Query: `SELECT winner, Count( winner ) FROM ipl.csv WHERE win_by_runs > 100 GROUP BY winner ORDER BY winner;`
 
 Sample Data: 
 
@@ -22,7 +22,7 @@ Sample Data:
 |Royal Challengers Bangalore  |   3       |
 
 
-Query: SELECT city, winner FROM ipl.csv WHERE winner='Chennai Super Kings' AND city ='Abu Dhabi' AND season=2014;
+Query: `SELECT city, winner FROM ipl.csv WHERE winner='Chennai Super Kings' AND city ='Abu Dhabi' AND season=2014;`
 
 Sample Data: 
 
