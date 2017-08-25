@@ -12,7 +12,7 @@ import org.junit.Test;
 
 import com.stackroute.datamunger.DataMunger;
 
-public class DataMungerTest_New {
+public class DataMungerTest {
 
 	private String queryString;
 	private static DataMunger dataMunger;
@@ -120,6 +120,8 @@ public class DataMungerTest_New {
 				dataMunger.getConditions("select city,winner,player_match from ipl1.csv where season1 > 2014"));
 
 	}
+	
+	
 	
 
 	@SuppressWarnings("deprecation")
