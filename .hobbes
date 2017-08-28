@@ -1,7 +1,7 @@
 {
   "workflow": "OpenJDK8MavenApp",
   "scores": {
-    "cadetTests":50, 
-    "pmd": 50
+    "commanderTests":50,
+    "cadetTests":50
   }
 }
