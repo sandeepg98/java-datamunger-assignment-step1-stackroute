@@ -5,6 +5,9 @@
 As an initial step of building a Utility to get meaningful information out of our Raw data - `as a first step you should be able to parse (decipher) our question. 
 In our computing terms, we call this a query.`Our system should be able to interpret this and break it into several parts - so that necessary actions can be triggered to fetch the required information in the proper format.
 
+`Note : Once you have cloned boilerplate from the given gitlab URL, import the project into eclipse and try to run your test cases. 
+Your project's test cases will show compile time error for methods, as you have not written the complete code.`
+
 ### STEP 1 - Deciphering the parts of the String (Query)
 
 Please note that the End User interacting with this utility will give out `SQL` like instructions and would expect the system to respond with necessary information. The system perceives this as a
