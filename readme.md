@@ -1,4 +1,4 @@
-## Seed code - Boilerplate for step 1 - Database Engine Assignment(PLEASE CHANGE THIS README POST CLONING - SAVE THE INSTRUCTIONS SEPERATELY)
+## Seed code - Boilerplate for step 1 - Database Engine Assignment
 
 ### Problem Statement
 
