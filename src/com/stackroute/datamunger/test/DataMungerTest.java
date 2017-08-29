@@ -1,13 +1,11 @@
 package com.stackroute.datamunger.test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-
-import java.io.FileNotFoundException;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.stackroute.datamunger.DataMunger;
@@ -47,9 +45,9 @@ public class DataMungerTest {
 	@Test
 	public void testGetFileNameFailure() {
 		// TODO: Please include AssertError message for all Asserts.
-		assertNotEquals(
+		assertNotNull(
 				"File name extraction failed. File name can be found after a space after from clause. Note: CSV file can contain a field that contains from as a part of the column name. For eg: from_date,from_hrs etc",
-				"ipl1.csv", dataMunger.getFile("select city,winner,team1,team2 from ipl.csv"));
+				dataMunger.getFile("select city,winner,team1,team2 from ipl.csv"));
 
 	}
 
@@ -66,9 +64,9 @@ public class DataMungerTest {
 	@Test
 	public void testGetAllColumnsFailure() {
 
-		assertNotEquals(
+		assertNotNull(
 				"testGetAllColumnsFailure() : Select fields extractions failed. The query string can have multiple fields separated by comma after the 'select' keyword. The extracted fields is supposed to be stored in a String array which is to be returned by the method getFields(). Check getFields() method",
-				new String[] { "*" }, dataMunger.getFields("select * from ipl1.csv"));
+				dataMunger.getFields("select * from ipl1.csv"));
 	}
 
 	@SuppressWarnings("deprecation")
@@ -85,9 +83,8 @@ public class DataMungerTest {
 	@Test
 	public void testGetColumnNamesFailure() {
 
-		assertNotEquals(
+		assertNotNull(
 				"testGetColumnNamesFailure() : Select fields extractions failed. The query string can have multiple fields separated by comma after the 'select' keyword. The extracted fields is supposed to be stored in a String array which is to be returned by the method getFields(). Check getFields() method",
-				new String[] { "city", "winner", "team1", "team2" },
 				dataMunger.getFields("select city1,winner1,team1,team2 from ipl.csv"));
 	}
 
@@ -121,24 +118,22 @@ public class DataMungerTest {
 	@Test
 	public void testGetColumnsWithWhereClauseFailure() {
 
-		assertNotEquals(
+		assertNotNull(
 				"testGetColumnsWithWhereClauseFailure() : File name extraction failed. Check getFile() method. File name can be found after a space after from clause. Note: CSV file can contain a field that contains from as a part of the column name. For eg: from_date,from_hrs etc",
-				"ipl.csv", dataMunger.getFile("select city,winner,player_match from ipl1.csv where season1 > 2014"));
-		assertNotEquals(
+				dataMunger.getFile("select city,winner,player_match from ipl1.csv where season1 > 2014"));
+		assertNotNull(
 				"testGetColumnsWithWhereClauseFailure() : Select fields extractions failed. The query string can have multiple fields separated by comma after the 'select' keyword. The extracted fields is supposed to be stored in a String array which is to be returned by the method getFields(). Check getFields() method",
-				new String[] { "city", "winner", "player_match" },
 				dataMunger.getFields("select city,winner,player_match from ipl1.csv where season1 > 2014"));
-		assertNotEquals(
+		assertNotNull(
 				"testGetColumnsWithWhereClauseFailure() : Retrieval of Base Query failed. BaseQuery contains from the beginning of the query till the where clause",
-				"select city,winner,player_match from ipl.csv ",
 				dataMunger.getBaseQuery("select city1,winner,player_match from ipl1.csv where season > 2014"));
-		assertNotEquals(
+		assertNotNull(
 				"testGetColumnsWithWhereClauseFailure() : Retrieval of conditions part failed. The conditions part contains starting from where keyword till the next keyword, which is either group by or order by clause. In case of absence of both group by and order by clause, it will contain till the end of the query string.",
-				" season > 2014", dataMunger
+				dataMunger
 						.getConditionsPartQuery("select city,winner,player_match from ipl1.csv where season1 > 2014"));
-		assertNotEquals(
+		assertNotNull(
 				"testGetColumnsWithWhereClauseFailure() : Retrieval of conditions failed. Check getConditions() method. The query can contain one or multiple conditions. In case of multiple conditions, the conditions will be separated by AND/OR keywords.",
-				new String[] { "season > 2014" },
+
 				dataMunger.getConditions("select city,winner,player_match from ipl1.csv where season1 > 2014"));
 
 	}
@@ -177,29 +172,29 @@ public class DataMungerTest {
 	@Test
 	public void testGetColumnsWithMultipleWhereClauseFailure() {
 
-		assertNotEquals(
+		assertNotNull(
 				"testGetColumnsWithMultipleWhereClauseFailure() : File name extraction failed. Check getFile() method. File name can be found after a space after from clause. Note: CSV file can contain a field that contains from as a part of the column name. For eg: from_date,from_hrs etc",
-				"ipl.csv", dataMunger.getFile(
+				dataMunger.getFile(
 						"select city,winner,player_match from ipl1.csv where season1 > 2014 and city ='Bangalore'"));
-		assertNotEquals(
+		assertNotNull(
 				"testGetColumnsWithMultipleWhereClauseFailure() : Select fields extractions failed. The query string can have multiple fields separated by comma after the 'select' keyword. The extracted fields is supposed to be stored in a String array which is to be returned by the method getFields(). Check getFields() method",
-				new String[] { "city", "winner", "player_match" }, dataMunger.getFields(
+				dataMunger.getFields(
 						"select city1,winner1,player_match from ipl1.csv where season1 > 2014 and city ='Bangalore'"));
-		assertNotEquals(
+		assertNotNull(
 				"testGetColumnsWithMultipleWhereClauseFailure() : Retrieval of Base Query failed. BaseQuery contains from the beginning of the query till the where clause",
-				"select city,winner,player_match from ipl1.csv ", dataMunger.getBaseQuery(
+				dataMunger.getBaseQuery(
 						"select city,winner,player_match from ipl.csv where season1 > 2014 and city ='Bangalore'"));
-		assertNotEquals(
+		assertNotNull(
 				"testGetColumnsWithMultipleWhereClauseFailure() : Retrieval of conditions part failed. The conditions part contains starting from where keyword till the next keyword, which is either group by or order by clause. In case of absence of both group by and order by clause, it will contain till the end of the query string",
-				" season < 2014 and city != 'bangalore'", dataMunger.getConditionsPartQuery(
+				dataMunger.getConditionsPartQuery(
 						"select city,winner,player_match from ipl1.csv where season1 > 2014 and city ='Bangalore'"));
-		assertNotEquals(
+		assertNotNull(
 				"testGetColumnsWithMultipleWhereClauseFailure() : Retrieval of conditions failed. Check getConditions() method. The query can contain one or multiple conditions. In case of multiple conditions, the conditions will be separated by AND/OR keywords",
-				new String[] { "season > 2014", "city ='bangalore'" }, dataMunger.getConditions(
+				dataMunger.getConditions(
 						"select city,winner,player_match from ipl1.csv where season > 2014 and city ='chennai'"));
-		assertNotEquals(
+		assertNotNull(
 				"testGetColumnsWithMultipleWhereClauseFailure() : Retrieval of Logical Operators failed. AND/OR keyword will exist in the query only if where conditions exists and it contains multiple conditions.The extracted logical operators will be stored in a String array which will be returned by the method. Please note that AND/OR can exist as a substring in the conditions as well. For eg: name='Alexander',color='Red' etc.",
-				new String[] { "and" }, dataMunger.getLogicalOperators(
+				dataMunger.getLogicalOperators(
 						"select city,winner,player_match from ipl1.csv where season > 2014 or city ='Bangalore'"));
 	}
 
@@ -211,19 +206,24 @@ public class DataMungerTest {
 				"testGetColumnsWithMultipleWhereOrClause() : File name extraction failed. Check getFile() method. File name can be found after a space after from clause. Note: CSV file can contain a field that contains from as a part of the column name. For eg: from_date,from_hrs etc",
 				"ipl.csv", dataMunger.getFile(
 						"select city,winner,player_match from ipl.csv where season > 2014 or city ='Bangalore'"));
-		assertEquals("testGetColumnsWithMultipleWhereOrClause() : Select fields extractions failed. The query string can have multiple fields separated by comma after the 'select' keyword. The extracted fields is supposed to be stored in a String array which is to be returned by the method getFields(). Check getFields() method",
+		assertEquals(
+				"testGetColumnsWithMultipleWhereOrClause() : Select fields extractions failed. The query string can have multiple fields separated by comma after the 'select' keyword. The extracted fields is supposed to be stored in a String array which is to be returned by the method getFields(). Check getFields() method",
 				new String[] { "city", "winner", "player_match" }, dataMunger.getFields(
 						"select city,winner,player_match from ipl.csv where season > 2014 or city ='Bangalore'"));
-		assertEquals("testGetColumnsWithMultipleWhereOrClause() : Retrieval of Base Query failed. BaseQuery contains from the beginning of the query till the where clause",
+		assertEquals(
+				"testGetColumnsWithMultipleWhereOrClause() : Retrieval of Base Query failed. BaseQuery contains from the beginning of the query till the where clause",
 				"select city,winner,player_match from ipl.csv ", dataMunger.getBaseQuery(
 						"select city,winner,player_match from ipl.csv where season > 2014 or city ='Bangalore'"));
-		assertEquals("testGetColumnsWithMultipleWhereOrClause() :  Retrieval of conditions part failed. The conditions part contains starting from where keyword till the next keyword, which is either group by or order by clause. In case of absence of both group by and order by clause, it will contain till the end of the query string",
+		assertEquals(
+				"testGetColumnsWithMultipleWhereOrClause() :  Retrieval of conditions part failed. The conditions part contains starting from where keyword till the next keyword, which is either group by or order by clause. In case of absence of both group by and order by clause, it will contain till the end of the query string",
 				" season > 2014 or city ='bangalore'", dataMunger.getConditionsPartQuery(
 						"select city,winner,player_match from ipl.csv where season > 2014 or city ='Bangalore'"));
-		assertEquals("testGetColumnsWithMultipleWhereOrClause() :  Retrieval of conditions failed. Check getConditions() method. The query can contain one or multiple conditions. In case of multiple conditions, the conditions will be separated by AND/OR keywords",
+		assertEquals(
+				"testGetColumnsWithMultipleWhereOrClause() :  Retrieval of conditions failed. Check getConditions() method. The query can contain one or multiple conditions. In case of multiple conditions, the conditions will be separated by AND/OR keywords",
 				new String[] { "season > 2014", "city ='bangalore'" }, dataMunger.getConditions(
 						"select city,winner,player_match from ipl.csv where season > 2014 or city ='Bangalore'"));
-		assertEquals("testGetColumnsWithMultipleWhereOrClause() :  Retrieval of Logical Operators failed. AND/OR keyword will exist in the query only if where conditions exists and it contains multiple conditions.The extracted logical operators will be stored in a String array which will be returned by the method. Please note that AND/OR can exist as a substring in the conditions as well. For eg: name='Alexander',color='Red' etc",
+		assertEquals(
+				"testGetColumnsWithMultipleWhereOrClause() :  Retrieval of Logical Operators failed. AND/OR keyword will exist in the query only if where conditions exists and it contains multiple conditions.The extracted logical operators will be stored in a String array which will be returned by the method. Please note that AND/OR can exist as a substring in the conditions as well. For eg: name='Alexander',color='Red' etc",
 				new String[] { "or" }, dataMunger.getLogicalOperators(
 						"select city,winner,player_match from ipl.csv where season > 2014 or city ='Bangalore'"));
 	}
@@ -232,22 +232,29 @@ public class DataMungerTest {
 	@Test
 	public void testGetColumnsWithMultipleWhereOrClauseFailure() {
 
-		assertNotEquals("testGetColumnsWithMultipleWhereOrClauseFailure() :  File name extraction failed. Check getFile() method. File name can be found after a space after from clause. Note: CSV file can contain a field that contains from as a part of the column name. For eg: from_date,from_hrs etc", "ipl.csv", dataMunger
-				.getFile("select city,winner,player_match from ipl1.csv where season > 2014 or city ='Bangalore'"));
-		assertNotEquals("testGetColumnsWithMultipleWhereOrClauseFailure() :  Select fields extractions failed. The query string can have multiple fields separated by comma after the 'select' keyword. The extracted fields is supposed to be stored in a String array which is to be returned by the method getFields(). Check getFields() method",
-				new String[] { "city1", "winner1", "player_match1" }, dataMunger.getFields(
+		assertNotNull(
+				"testGetColumnsWithMultipleWhereOrClauseFailure() :  File name extraction failed. Check getFile() method. File name can be found after a space after from clause. Note: CSV file can contain a field that contains from as a part of the column name. For eg: from_date,from_hrs etc",
+				dataMunger.getFile(
 						"select city,winner,player_match from ipl1.csv where season > 2014 or city ='Bangalore'"));
-		assertNotEquals("testGetColumnsWithMultipleWhereOrClauseFailure() :  Retrieval of Base Query failed. BaseQuery contains from the beginning of the query till the where clause",
-				"select city,winner,player_match from ipl.csv ", dataMunger.getBaseQuery(
+		assertNotNull(
+				"testGetColumnsWithMultipleWhereOrClauseFailure() :  Select fields extractions failed. The query string can have multiple fields separated by comma after the 'select' keyword. The extracted fields is supposed to be stored in a String array which is to be returned by the method getFields(). Check getFields() method",
+				dataMunger.getFields(
 						"select city,winner,player_match from ipl1.csv where season > 2014 or city ='Bangalore'"));
-		assertNotEquals("testGetColumnsWithMultipleWhereOrClauseFailure() :  Retrieval of conditions part failed. The conditions part contains starting from where keyword till the next keyword, which is either group by or order by clause. In case of absence of both group by and order by clause, it will contain till the end of the query string",
-				" season < 2014 or city !='bangalore'", dataMunger.getConditionsPartQuery(
+		assertNotNull(
+				"testGetColumnsWithMultipleWhereOrClauseFailure() :  Retrieval of Base Query failed. BaseQuery contains from the beginning of the query till the where clause",
+				dataMunger.getBaseQuery(
+						"select city,winner,player_match from ipl1.csv where season > 2014 or city ='Bangalore'"));
+		assertNotNull(
+				"testGetColumnsWithMultipleWhereOrClauseFailure() :  Retrieval of conditions part failed. The conditions part contains starting from where keyword till the next keyword, which is either group by or order by clause. In case of absence of both group by and order by clause, it will contain till the end of the query string",
+				dataMunger.getConditionsPartQuery(
 						"select city,winner,player_match from ipl1.csv where season1 > 2014 or city ='Bangalore'"));
-		assertNotEquals("testGetColumnsWithMultipleWhereOrClauseFailure() :  Retrieval of conditions failed. Check getConditions() method. The query can contain one or multiple conditions. In case of multiple conditions, the conditions will be separated by AND/OR keywords",
-				new String[] { "season1 < 2014", "city ='bangalore'" }, dataMunger.getConditions(
+		assertNotNull(
+				"testGetColumnsWithMultipleWhereOrClauseFailure() :  Retrieval of conditions failed. Check getConditions() method. The query can contain one or multiple conditions. In case of multiple conditions, the conditions will be separated by AND/OR keywords",
+				dataMunger.getConditions(
 						"select city,winner,player_match from ipl1.csv where season1 > 2014 or city ='Bangalore'"));
-		assertNotEquals("testGetColumnsWithMultipleWhereOrClauseFailure() :  Retrieval of Logical Operators failed. AND/OR keyword will exist in the query only if where conditions exists and it contains multiple conditions.The extracted logical operators will be stored in a String array which will be returned by the method. Please note that AND/OR can exist as a substring in the conditions as well. For eg: name='Alexander',color='Red' etc",
-				new String[] { "or" }, dataMunger.getLogicalOperators(
+		assertNotNull(
+				"testGetColumnsWithMultipleWhereOrClauseFailure() :  Retrieval of Logical Operators failed. AND/OR keyword will exist in the query only if where conditions exists and it contains multiple conditions.The extracted logical operators will be stored in a String array which will be returned by the method. Please note that AND/OR can exist as a substring in the conditions as well. For eg: name='Alexander',color='Red' etc",
+				dataMunger.getLogicalOperators(
 						"select city,winner,player_match from ipl1.csv where season1 > 2014 and city ='Bangalore'"));
 	}
 
@@ -255,22 +262,28 @@ public class DataMungerTest {
 	@Test
 	public void testGetColumnsWithThreeWhereOrClause() {
 
-		assertEquals("testGetColumnsWithThreeWhereOrClause() :  File name extraction failed. Check getFile() method. File name can be found after a space after from clause. Note: CSV file can contain a field that contains from as a part of the column name. For eg: from_date,from_hrs etc", "ipl.csv",
-				dataMunger.getFile(
+		assertEquals(
+				"testGetColumnsWithThreeWhereOrClause() :  File name extraction failed. Check getFile() method. File name can be found after a space after from clause. Note: CSV file can contain a field that contains from as a part of the column name. For eg: from_date,from_hrs etc",
+				"ipl.csv", dataMunger.getFile(
 						"select city,winner,player_match from ipl.csv where season > 2014 and city ='Bangalore' or city ='Delhi'"));
-		assertEquals("testGetColumnsWithThreeWhereOrClause() :  Select fields extractions failed. The query string can have multiple fields separated by comma after the 'select' keyword. The extracted fields is supposed to be stored in a String array which is to be returned by the method getFields(). Check getFields() method",
+		assertEquals(
+				"testGetColumnsWithThreeWhereOrClause() :  Select fields extractions failed. The query string can have multiple fields separated by comma after the 'select' keyword. The extracted fields is supposed to be stored in a String array which is to be returned by the method getFields(). Check getFields() method",
 				new String[] { "city", "winner", "player_match" }, dataMunger.getFields(
 						"select city,winner,player_match from ipl.csv where season > 2014 and city ='Bangalore' or city ='Delhi'"));
-		assertEquals("testGetColumnsWithThreeWhereOrClause() :  Retrieval of Base Query failed. BaseQuery contains from the beginning of the query till the where clause",
+		assertEquals(
+				"testGetColumnsWithThreeWhereOrClause() :  Retrieval of Base Query failed. BaseQuery contains from the beginning of the query till the where clause",
 				"select city,winner,player_match from ipl.csv ", dataMunger.getBaseQuery(
 						"select city,winner,player_match from ipl.csv where season > 2014 and city ='Bangalore' or city ='Delhi'"));
-		assertEquals("testGetColumnsWithThreeWhereOrClause() :  Retrieval of conditions part failed. The conditions part contains starting from where keyword till the next keyword, which is either group by or order by clause. In case of absence of both group by and order by clause, it will contain till the end of the query string",
+		assertEquals(
+				"testGetColumnsWithThreeWhereOrClause() :  Retrieval of conditions part failed. The conditions part contains starting from where keyword till the next keyword, which is either group by or order by clause. In case of absence of both group by and order by clause, it will contain till the end of the query string",
 				" season > 2014 and city ='bangalore' or city ='delhi'", dataMunger.getConditionsPartQuery(
 						"select city,winner,player_match from ipl.csv where season > 2014 and city ='Bangalore' or city ='Delhi'"));
-		assertEquals("testGetColumnsWithThreeWhereOrClause() :  Retrieval of conditions failed. Check getConditions() method. The query can contain one or multiple conditions. In case of multiple conditions, the conditions will be separated by AND/OR keywords",
+		assertEquals(
+				"testGetColumnsWithThreeWhereOrClause() :  Retrieval of conditions failed. Check getConditions() method. The query can contain one or multiple conditions. In case of multiple conditions, the conditions will be separated by AND/OR keywords",
 				new String[] { "season > 2014", "city ='bangalore'", "city ='delhi'" }, dataMunger.getConditions(
 						"select city,winner,player_match from ipl.csv where season > 2014 and city ='Bangalore' or city ='Delhi'"));
-		assertEquals("testGetColumnsWithThreeWhereOrClause() :  Retrieval of Logical Operators failed. AND/OR keyword will exist in the query only if where conditions exists and it contains multiple conditions.The extracted logical operators will be stored in a String array which will be returned by the method. Please note that AND/OR can exist as a substring in the conditions as well. For eg: name='Alexander',color='Red' etc",
+		assertEquals(
+				"testGetColumnsWithThreeWhereOrClause() :  Retrieval of Logical Operators failed. AND/OR keyword will exist in the query only if where conditions exists and it contains multiple conditions.The extracted logical operators will be stored in a String array which will be returned by the method. Please note that AND/OR can exist as a substring in the conditions as well. For eg: name='Alexander',color='Red' etc",
 				new String[] { "and", "or" }, dataMunger.getLogicalOperators(
 						"select city,winner,player_match from ipl.csv where season > 2014 and city ='Bangalore' or city ='Delhi'"));
 	}
@@ -279,23 +292,29 @@ public class DataMungerTest {
 	@Test
 	public void testGetColumnsWithThreeWhereOrClauseFailure() {
 
-		assertNotEquals("testGetColumnsWithThreeWhereOrClauseFailure() :  File name extraction failed. Check getFile() method. File name can be found after a space after from clause. Note: CSV file can contain a field that contains from as a part of the column name. For eg: from_date,from_hrs etc", "ipl.csv",
+		assertNotNull(
+				"testGetColumnsWithThreeWhereOrClauseFailure() :  File name extraction failed. Check getFile() method. File name can be found after a space after from clause. Note: CSV file can contain a field that contains from as a part of the column name. For eg: from_date,from_hrs etc",
 				dataMunger.getFile(
 						"select city,winner,player_match from ipl1.csv where season1 > 2014 and city ='Bangalore' or city ='Delhi'"));
-		assertNotEquals("testGetColumnsWithThreeWhereOrClauseFailure() :  Select fields extractions failed. The query string can have multiple fields separated by comma after the 'select' keyword. The extracted fields is supposed to be stored in a String array which is to be returned by the method getFields(). Check getFields() method",
-				new String[] { "city", "winner", "player_match" }, dataMunger.getFields(
+		assertNotNull(
+				"testGetColumnsWithThreeWhereOrClauseFailure() :  Select fields extractions failed. The query string can have multiple fields separated by comma after the 'select' keyword. The extracted fields is supposed to be stored in a String array which is to be returned by the method getFields(). Check getFields() method",
+				dataMunger.getFields(
 						"select city1,winner,player_match from ipl.csv where season1 > 2014 and city ='Bangalore' or city ='Delhi'"));
-		assertNotEquals("testGetColumnsWithThreeWhereOrClauseFailure() :  Retrieval of Base Query failed. BaseQuery contains from the beginning of the query till the where clause",
-				"select city,winner,player_match from ipl.csv ", dataMunger.getBaseQuery(
+		assertNotNull(
+				"testGetColumnsWithThreeWhereOrClauseFailure() :  Retrieval of Base Query failed. BaseQuery contains from the beginning of the query till the where clause",
+				dataMunger.getBaseQuery(
 						"select city,winner,player_match from ipl1.csv where season > 2014 and city ='Bangalore' or city ='Delhi'"));
-		assertNotEquals("testGetColumnsWithThreeWhereOrClauseFailure() : Retrieval of conditions part failed. The conditions part contains starting from where keyword till the next keyword, which is either group by or order by clause. In case of absence of both group by and order by clause, it will contain till the end of the query string",
-				" season > 2014 and city ='bangalore' or city ='delhi'", dataMunger.getConditionsPartQuery(
+		assertNotNull(
+				"testGetColumnsWithThreeWhereOrClauseFailure() : Retrieval of conditions part failed. The conditions part contains starting from where keyword till the next keyword, which is either group by or order by clause. In case of absence of both group by and order by clause, it will contain till the end of the query string",
+				dataMunger.getConditionsPartQuery(
 						"select city,winner,player_match from ipl1.csv where season1 < 2014 and city ='Bangalore' or city ='Delhi'"));
-		assertNotEquals("testGetColumnsWithThreeWhereOrClauseFailure() : Retrieval of conditions failed. Check getConditions() method. The query can contain one or multiple conditions. In case of multiple conditions, the conditions will be separated by AND/OR keywords",
-				new String[] { "season > 2014", "city ='bangalore'", "city ='chennai'" }, dataMunger.getConditions(
+		assertNotNull(
+				"testGetColumnsWithThreeWhereOrClauseFailure() : Retrieval of conditions failed. Check getConditions() method. The query can contain one or multiple conditions. In case of multiple conditions, the conditions will be separated by AND/OR keywords",
+				dataMunger.getConditions(
 						"select city,winner,player_match from ipl1.csv where season1 < 2014 and city ='Bangalore' or city ='Delhi'"));
-		assertNotEquals("testGetColumnsWithThreeWhereOrClauseFailure() : Retrieval of Logical Operators failed. AND/OR keyword will exist in the query only if where conditions exists and it contains multiple conditions.The extracted logical operators will be stored in a String array which will be returned by the method. Please note that AND/OR can exist as a substring in the conditions as well. For eg: name='Alexander',color='Red' etc",
-				new String[] { "and", "or" }, dataMunger.getLogicalOperators(
+		assertNotNull(
+				"testGetColumnsWithThreeWhereOrClauseFailure() : Retrieval of Logical Operators failed. AND/OR keyword will exist in the query only if where conditions exists and it contains multiple conditions.The extracted logical operators will be stored in a String array which will be returned by the method. Please note that AND/OR can exist as a substring in the conditions as well. For eg: name='Alexander',color='Red' etc",
+				dataMunger.getLogicalOperators(
 						"select city,winner,player_match from ip11.csv where season > 2014 and1 city ='Bangalore' or city ='Delhi'"));
 	}
 
@@ -303,22 +322,28 @@ public class DataMungerTest {
 	@Test
 	public void testGetColumnsWithMultipleWhereGroupByClause() {
 
-		assertEquals("testGetColumnsWithMultipleWhereGroupByClause() : Select fields extractions failed. The query string can have multiple fields separated by comma after the 'select' keyword. The extracted fields is supposed to be stored in a String array which is to be returned by the method getFields(). Check getFields() method",
+		assertEquals(
+				"testGetColumnsWithMultipleWhereGroupByClause() : Select fields extractions failed. The query string can have multiple fields separated by comma after the 'select' keyword. The extracted fields is supposed to be stored in a String array which is to be returned by the method getFields(). Check getFields() method",
 				new String[] { "city", "winner", "player_match" }, dataMunger.getFields(
 						"select city,winner,player_match from ipl.csv where season > 2014 and city ='Bangalore' group by winner"));
-		assertEquals("testGetColumnsWithMultipleWhereGroupByClause() : Retrieval of Base Query failed. BaseQuery contains from the beginning of the query till the where clause",
+		assertEquals(
+				"testGetColumnsWithMultipleWhereGroupByClause() : Retrieval of Base Query failed. BaseQuery contains from the beginning of the query till the where clause",
 				"select city,winner,player_match from ipl.csv ", dataMunger.getBaseQuery(
 						"select city,winner,player_match from ipl.csv where season > 2014 and city ='Bangalore' group by winner"));
-		assertEquals("testGetColumnsWithMultipleWhereGroupByClause() : Retrieval of conditions part failed. The conditions part contains starting from where keyword till the next keyword, which is either group by or order by clause. In case of absence of both group by and order by clause, it will contain till the end of the query string",
+		assertEquals(
+				"testGetColumnsWithMultipleWhereGroupByClause() : Retrieval of conditions part failed. The conditions part contains starting from where keyword till the next keyword, which is either group by or order by clause. In case of absence of both group by and order by clause, it will contain till the end of the query string",
 				" season > 2014 and city ='bangalore' ", dataMunger.getConditionsPartQuery(
 						"select city,winner,player_match from ipl.csv where season > 2014 and city ='Bangalore' group by winner"));
-		assertEquals("testGetColumnsWithMultipleWhereGroupByClause() : Retrieval of conditions failed. Check getConditions() method. The query can contain one or multiple conditions. In case of multiple conditions, the conditions will be separated by AND/OR keywords",
+		assertEquals(
+				"testGetColumnsWithMultipleWhereGroupByClause() : Retrieval of conditions failed. Check getConditions() method. The query can contain one or multiple conditions. In case of multiple conditions, the conditions will be separated by AND/OR keywords",
 				new String[] { "season > 2014", "city ='bangalore'" }, dataMunger.getConditions(
 						"select city,winner,player_match from ipl.csv where season > 2014 and city ='Bangalore' group by winner"));
-		assertEquals("testGetColumnsWithMultipleWhereGroupByClause() : Retrieval of Logical Operators failed. AND/OR keyword will exist in the query only if where conditions exists and it contains multiple conditions.The extracted logical operators will be stored in a String array which will be returned by the method. Please note that AND/OR can exist as a substring in the conditions as well. For eg: name='Alexander',color='Red' etc",
+		assertEquals(
+				"testGetColumnsWithMultipleWhereGroupByClause() : Retrieval of Logical Operators failed. AND/OR keyword will exist in the query only if where conditions exists and it contains multiple conditions.The extracted logical operators will be stored in a String array which will be returned by the method. Please note that AND/OR can exist as a substring in the conditions as well. For eg: name='Alexander',color='Red' etc",
 				new String[] { "and" }, dataMunger.getLogicalOperators(
 						"select city,winner,player_match from ipl.csv where season > 2014 and city ='Bangalore' group by winner"));
-		assertEquals("testGetColumnsWithMultipleWhereGroupByClause() : Check getGroupByFields() method. The query string can contain more than one group by fields. it is also possible thant the query string might not contain group by clause at all. The field names, condition values might contain 'group' as a substring. For eg: newsgroup_name",
+		assertEquals(
+				"testGetColumnsWithMultipleWhereGroupByClause() : Check getGroupByFields() method. The query string can contain more than one group by fields. it is also possible thant the query string might not contain group by clause at all. The field names, condition values might contain 'group' as a substring. For eg: newsgroup_name",
 				new String[] { "winner" }, dataMunger.getGroupByFields(
 						"select city,winner,player_match from ipl.csv where season > 2014 and city ='Bangalore' group by winner"));
 
@@ -328,23 +353,29 @@ public class DataMungerTest {
 	@Test
 	public void testGetColumnsWithMultipleWhereGroupByClauseFailure() {
 
-		assertNotEquals("testGetColumnsWithMultipleWhereGroupByClauseFailure() : Select fields extractions failed. The query string can have multiple fields separated by comma after the 'select' keyword. The extracted fields is supposed to be stored in a String array which is to be returned by the method getFields(). Check getFields() method",
-				new String[] { "city1", "winner", "player_match" }, dataMunger.getFields(
+		assertNotNull(
+				"testGetColumnsWithMultipleWhereGroupByClauseFailure() : Select fields extractions failed. The query string can have multiple fields separated by comma after the 'select' keyword. The extracted fields is supposed to be stored in a String array which is to be returned by the method getFields(). Check getFields() method",
+				dataMunger.getFields(
 						"select city,winner,player_match from ipl.csv where season > 2014 and city ='Bangalore' group by winner"));
-		assertNotEquals("testGetColumnsWithMultipleWhereGroupByClauseFailure() : Retrieval of Base Query failed. BaseQuery contains from the beginning of the query till the where clause",
-				"select city1,winner,player_match from ipl1.csv ", dataMunger.getBaseQuery(
+		assertNotNull(
+				"testGetColumnsWithMultipleWhereGroupByClauseFailure() : Retrieval of Base Query failed. BaseQuery contains from the beginning of the query till the where clause",
+				dataMunger.getBaseQuery(
 						"select city,winner,player_match from ipl.csv where season > 2014 and city ='Bangalore' group by winner"));
-		assertNotEquals("testGetColumnsWithMultipleWhereGroupByClauseFailure() : Retrieval of conditions part failed. The conditions part contains starting from where keyword till the next keyword, which is either group by or order by clause. In case of absence of both group by and order by clause, it will contain till the end of the query string",
-				" season1 < 2014 and city ='bangalore' ", dataMunger.getConditionsPartQuery(
+		assertNotNull(
+				"testGetColumnsWithMultipleWhereGroupByClauseFailure() : Retrieval of conditions part failed. The conditions part contains starting from where keyword till the next keyword, which is either group by or order by clause. In case of absence of both group by and order by clause, it will contain till the end of the query string",
+				dataMunger.getConditionsPartQuery(
 						"select city,winner,player_match from ipl1.csv where season > 2014 and city ='Bangalore' group by winner"));
-		assertNotEquals("testGetColumnsWithMultipleWhereGroupByClauseFailure() : Retrieval of conditions failed. Check getConditions() method. The query can contain one or multiple conditions. In case of multiple conditions, the conditions will be separated by AND/OR keywords ",
-				new String[] { "season1 < 2014", "city ='bangalore'" }, dataMunger.getConditions(
+		assertNotNull(
+				"testGetColumnsWithMultipleWhereGroupByClauseFailure() : Retrieval of conditions failed. Check getConditions() method. The query can contain one or multiple conditions. In case of multiple conditions, the conditions will be separated by AND/OR keywords ",
+				dataMunger.getConditions(
 						"select city,winner,player_match from ipl.csv where season > 2014 and city ='Bangalore' group by winner"));
-		assertNotEquals("testGetColumnsWithMultipleWhereGroupByClauseFailure() : Retrieval of Logical Operators failed. AND/OR keyword will exist in the query only if where conditions exists and it contains multiple conditions.The extracted logical operators will be stored in a String array which will be returned by the method. Please note that AND/OR can exist as a substring in the conditions as well. For eg: name='Alexander',color='Red' etc",
-				new String[] { "or" }, dataMunger.getLogicalOperators(
+		assertNotNull(
+				"testGetColumnsWithMultipleWhereGroupByClauseFailure() : Retrieval of Logical Operators failed. AND/OR keyword will exist in the query only if where conditions exists and it contains multiple conditions.The extracted logical operators will be stored in a String array which will be returned by the method. Please note that AND/OR can exist as a substring in the conditions as well. For eg: name='Alexander',color='Red' etc",
+				dataMunger.getLogicalOperators(
 						"select city,winner,player_match from ipl.csv where season > 2014 and city ='Bangalore' group by winner"));
-		assertNotEquals("testGetColumnsWithMultipleWhereGroupByClauseFailure() : Check getGroupByFields() method. The query string can contain more than one group by fields. it is also possible thant the query string might not contain group by clause at all. The field names, condition values might contain 'group' as a substring. For eg: newsgroup_name",
-				new String[] { "winner1" }, dataMunger.getGroupByFields(
+		assertNotNull(
+				"testGetColumnsWithMultipleWhereGroupByClauseFailure() : Check getGroupByFields() method. The query string can contain more than one group by fields. it is also possible thant the query string might not contain group by clause at all. The field names, condition values might contain 'group' as a substring. For eg: newsgroup_name",
+				dataMunger.getGroupByFields(
 						"select city,winner,player_match from ipl.csv where season > 2014 and city ='Bangalore' group by winner"));
 
 	}
@@ -354,19 +385,27 @@ public class DataMungerTest {
 	public void testGetWithGroupByClause() {
 
 		dataMunger.parseQuery("select city,winner,player_match from ipl.csv group by winner");
-		assertEquals("testGetWithGroupByClause() : Select fields extractions failed. The query string can have multiple fields separated by comma after the 'select' keyword. The extracted fields is supposed to be stored in a String array which is to be returned by the method getFields(). Check getFields() method",
+		assertEquals(
+				"testGetWithGroupByClause() : Select fields extractions failed. The query string can have multiple fields separated by comma after the 'select' keyword. The extracted fields is supposed to be stored in a String array which is to be returned by the method getFields(). Check getFields() method",
 				new String[] { "city", "winner", "player_match" },
 				dataMunger.getFields("select city,winner,player_match from ipl.csv group by winner"));
-		assertEquals("testGetWithGroupByClause() : Retrieval of Base Query failed. BaseQuery contains from the beginning of the query till the where clause",
+		assertEquals(
+				"testGetWithGroupByClause() : Retrieval of Base Query failed. BaseQuery contains from the beginning of the query till the where clause",
 				"select city,winner,player_match from ipl.csv ",
 				dataMunger.getBaseQuery("select city,winner,player_match from ipl.csv group by winner"));
-		assertEquals("testGetWithGroupByClause() : Retrieval of conditions part is not returning null. The conditions part contains starting from where keyword till the next keyword, which is either group by or order by clause. In case of absence of both group by and order by clause, it will contain till the end of the query string", null,
+		assertEquals(
+				"testGetWithGroupByClause() : Retrieval of conditions part is not returning null. The conditions part contains starting from where keyword till the next keyword, which is either group by or order by clause. In case of absence of both group by and order by clause, it will contain till the end of the query string",
+				null,
 				dataMunger.getConditionsPartQuery("select city,winner,player_match from ipl.csv group by winner"));
-		assertEquals("testGetWithGroupByClause() : Retrieval of conditions failed. Check getConditions() method. The query can contain one or multiple conditions. In case of multiple conditions, the conditions will be separated by AND/OR keywords", null,
-				dataMunger.getConditions("select city,winner,player_match from ipl.csv group by winner"));
-		assertEquals("testGetWithGroupByClause() : Logical Operators should be null. AND/OR keyword will exist in the query only if where conditions exists and it contains multiple conditions.The extracted logical operators will be stored in a String array which will be returned by the method. Please note that AND/OR can exist as a substring in the conditions as well. For eg: name='Alexander',color='Red' etc", null,
-				dataMunger.getLogicalOperators("select city,winner,player_match from ipl.csv group by winner"));
-		assertEquals("testGetWithGroupByClause() : Check getGroupByFields() method. The query string can contain more than one group by fields. it is also possible thant the query string might not contain group by clause at all. The field names, condition values might contain 'group' as a substring. For eg: newsgroup_name", new String[] { "winner" },
+		assertEquals(
+				"testGetWithGroupByClause() : Retrieval of conditions failed. Check getConditions() method. The query can contain one or multiple conditions. In case of multiple conditions, the conditions will be separated by AND/OR keywords",
+				null, dataMunger.getConditions("select city,winner,player_match from ipl.csv group by winner"));
+		assertEquals(
+				"testGetWithGroupByClause() : Logical Operators should be null. AND/OR keyword will exist in the query only if where conditions exists and it contains multiple conditions.The extracted logical operators will be stored in a String array which will be returned by the method. Please note that AND/OR can exist as a substring in the conditions as well. For eg: name='Alexander',color='Red' etc",
+				null, dataMunger.getLogicalOperators("select city,winner,player_match from ipl.csv group by winner"));
+		assertEquals(
+				"testGetWithGroupByClause() : Check getGroupByFields() method. The query string can contain more than one group by fields. it is also possible thant the query string might not contain group by clause at all. The field names, condition values might contain 'group' as a substring. For eg: newsgroup_name",
+				new String[] { "winner" },
 				dataMunger.getGroupByFields("select city,winner,player_match from ipl.csv group by winner"));
 	}
 
@@ -375,19 +414,23 @@ public class DataMungerTest {
 	public void testGetWithGroupByClauseFailure() {
 
 		dataMunger.parseQuery("select city,winner,player_match from ipl1.csv group by winner");
-		assertNotEquals("testGetWithGroupByClauseFailure() : Select fields extractions failed. The query string can have multiple fields separated by comma after the 'select' keyword. The extracted fields is supposed to be stored in a String array which is to be returned by the method getFields(). Check getFields() method",
-				new String[] { "city1", "winner1", "player_match" },
+		assertNotNull(
+				"testGetWithGroupByClauseFailure() : Select fields extractions failed. The query string can have multiple fields separated by comma after the 'select' keyword. The extracted fields is supposed to be stored in a String array which is to be returned by the method getFields(). Check getFields() method",
 				dataMunger.getFields("select city,winner,player_match from ipl1.csv group by winner"));
-		assertNotEquals("testGetWithGroupByClauseFailure() : Retrieval of Base Query failed. BaseQuery contains from the beginning of the query till the where clause",
-				"select city1,winner,player_match from ipl.csv ",
+		assertNotNull(
+				"testGetWithGroupByClauseFailure() : Retrieval of Base Query failed. BaseQuery contains from the beginning of the query till the where clause",
 				dataMunger.getBaseQuery("select city1,winner,player_match from ipl1.csv group by winner"));
-		assertNotEquals("testGetWithGroupByClauseFailure() : Retrieval of conditions part failed. The conditions part contains starting from where keyword till the next keyword, which is either group by or order by clause. In case of absence of both group by and order by clause, it will contain till the end of the query string", 1,
+		assertNull(
+				"testGetWithGroupByClauseFailure() : Retrieval of conditions part failed. The conditions part contains starting from where keyword till the next keyword, which is either group by or order by clause. In case of absence of both group by and order by clause, it will contain till the end of the query string",
 				dataMunger.getConditionsPartQuery("select city,winner,player_match from ipl1.csv group by winner"));
-		assertNotEquals("testGetWithGroupByClauseFailure() : Retrieval of conditions failed. Check getConditions() method. The query can contain one or multiple conditions. In case of multiple conditions, the conditions will be separated by AND/OR keywords", 1,
+		assertNull(
+				"testGetWithGroupByClauseFailure() : Retrieval of conditions failed. Check getConditions() method. The query can contain one or multiple conditions. In case of multiple conditions, the conditions will be separated by AND/OR keywords",
 				dataMunger.getConditions("select city,winner,player_match from ipl.csv group by winner"));
-		assertNotEquals("testGetWithGroupByClauseFailure() : Retrieval of Logical Operators failed. AND/OR keyword will exist in the query only if where conditions exists and it contains multiple conditions.The extracted logical operators will be stored in a String array which will be returned by the method. Please note that AND/OR can exist as a substring in the conditions as well. For eg: name='Alexander',color='Red' etc", 1,
+		assertNull(
+				"testGetWithGroupByClauseFailure() : Retrieval of Logical Operators failed. AND/OR keyword will exist in the query only if where conditions exists and it contains multiple conditions.The extracted logical operators will be stored in a String array which will be returned by the method. Please note that AND/OR can exist as a substring in the conditions as well. For eg: name='Alexander',color='Red' etc",
 				dataMunger.getLogicalOperators("select city,winner,player_match from ipl1.csv group by winner"));
-		assertNotEquals("testGetWithGroupByClauseFailure() : Check getGroupByFields() method. The query string can contain more than one group by fields. it is also possible thant the query string might not contain group by clause at all. The field names, condition values might contain 'group' as a substring. For eg: newsgroup_name", new String[] { "winner" },
+		assertNotNull(
+				"testGetWithGroupByClauseFailure() : Check getGroupByFields() method. The query string can contain more than one group by fields. it is also possible thant the query string might not contain group by clause at all. The field names, condition values might contain 'group' as a substring. For eg: newsgroup_name",
 				dataMunger.getGroupByFields("select city,winner1,player_match from ipl1.csv group by winner"));
 	}
 
@@ -397,25 +440,32 @@ public class DataMungerTest {
 
 		dataMunger.parseQuery(
 				"select city,winner,player_match from ipl.csv where season > 2014 and city ='Bangalore' order by city");
-		assertEquals("testGetColumnsWithMultipleWhereAndOrderByClause() : Select fields extractions failed. The query string can have multiple fields separated by comma after the 'select' keyword. The extracted fields is supposed to be stored in a String array which is to be returned by the method getFields(). Check getFields() method",
+		assertEquals(
+				"testGetColumnsWithMultipleWhereAndOrderByClause() : Select fields extractions failed. The query string can have multiple fields separated by comma after the 'select' keyword. The extracted fields is supposed to be stored in a String array which is to be returned by the method getFields(). Check getFields() method",
 				new String[] { "city", "winner", "player_match" }, dataMunger.getFields(
 						"select city,winner,player_match from ipl.csv where season > 2014 and city ='Bangalore' order by city"));
-		assertEquals("testGetColumnsWithMultipleWhereAndOrderByClause() : Retrieval of Base Query failed. BaseQuery contains from the beginning of the query till the where clause",
+		assertEquals(
+				"testGetColumnsWithMultipleWhereAndOrderByClause() : Retrieval of Base Query failed. BaseQuery contains from the beginning of the query till the where clause",
 				"select city,winner,player_match from ipl.csv ", dataMunger.getBaseQuery(
 						"select city,winner,player_match from ipl.csv where season > 2014 and city ='Bangalore' order by city"));
-		assertEquals("testGetColumnsWithMultipleWhereAndOrderByClause() : Retrieval of conditions part failed. The conditions part contains starting from where keyword till the next keyword, which is either group by or order by clause. In case of absence of both group by and order by clause, it will contain till the end of the query string",
+		assertEquals(
+				"testGetColumnsWithMultipleWhereAndOrderByClause() : Retrieval of conditions part failed. The conditions part contains starting from where keyword till the next keyword, which is either group by or order by clause. In case of absence of both group by and order by clause, it will contain till the end of the query string",
 				" season > 2014 and city ='bangalore' ", dataMunger.getConditionsPartQuery(
 						"select city,winner,player_match from ipl.csv where season > 2014 and city ='Bangalore' order by city"));
-		assertEquals("testGetColumnsWithMultipleWhereAndOrderByClause() : Retrieval of conditions failed. Check getConditions() method. The query can contain one or multiple conditions. In case of multiple conditions, the conditions will be separated by AND/OR keywords",
+		assertEquals(
+				"testGetColumnsWithMultipleWhereAndOrderByClause() : Retrieval of conditions failed. Check getConditions() method. The query can contain one or multiple conditions. In case of multiple conditions, the conditions will be separated by AND/OR keywords",
 				new String[] { "season > 2014", "city ='bangalore'" }, dataMunger.getConditions(
 						"select city,winner,player_match from ipl.csv where season > 2014 and city ='Bangalore' order by city"));
-		assertEquals("testGetColumnsWithMultipleWhereAndOrderByClause() : Retrieval of Logical Operators failed. AND/OR keyword will exist in the query only if where conditions exists and it contains multiple conditions.The extracted logical operators will be stored in a String array which will be returned by the method. Please note that AND/OR can exist as a substring in the conditions as well. For eg: name='Alexander',color='Red' etc",
+		assertEquals(
+				"testGetColumnsWithMultipleWhereAndOrderByClause() : Retrieval of Logical Operators failed. AND/OR keyword will exist in the query only if where conditions exists and it contains multiple conditions.The extracted logical operators will be stored in a String array which will be returned by the method. Please note that AND/OR can exist as a substring in the conditions as well. For eg: name='Alexander',color='Red' etc",
 				new String[] { "and" }, dataMunger.getLogicalOperators(
 						"select city,winner,player_match from ipl.csv where season > 2014 and city ='Bangalore' order by city"));
-		assertEquals("testGetColumnsWithMultipleWhereAndOrderByClause() : Check getGroupByFields() method. The query string can contain more than one group by fields. it is also possible thant the query string might not contain group by clause at all. The field names, condition values might contain 'group' as a substring. For eg: newsgroup_name", null,
-				dataMunger.getGroupByFields(
+		assertEquals(
+				"testGetColumnsWithMultipleWhereAndOrderByClause() : Check getGroupByFields() method. The query string can contain more than one group by fields. it is also possible thant the query string might not contain group by clause at all. The field names, condition values might contain 'group' as a substring. For eg: newsgroup_name",
+				null, dataMunger.getGroupByFields(
 						"select city,winner,player_match from ipl.csv where season > 2014 and city ='Bangalore' order by city"));
-		assertEquals("testGetColumnsWithMultipleWhereAndOrderByClause() : Check getOrderByFields() method. The query string can contain more than one order by fields.The query string might not contain order by clause at all. The field names, condition values might contain 'order' as a substring. For eg: order_number,job_order ",
+		assertEquals(
+				"testGetColumnsWithMultipleWhereAndOrderByClause() : Check getOrderByFields() method. The query string can contain more than one order by fields.The query string might not contain order by clause at all. The field names, condition values might contain 'order' as a substring. For eg: order_number,job_order ",
 				new String[] { "city" }, dataMunger.getOrderByFields(
 						"select city,winner,player_match from ipl.csv where season > 2014 and city ='Bangalore' order by city"));
 	}
@@ -426,29 +476,33 @@ public class DataMungerTest {
 
 		dataMunger.parseQuery(
 				"select city,winner,player_match from ipl1.csv where season > 2014 and city ='Bangalore' order by city");
-		assertNotEquals("testGetColumnsWithMultipleWhereAndOrderByClauseFailure(): Select fields extractions failed. The query string can have multiple fields separated by comma after the 'select' keyword. The extracted fields is supposed to be stored in a String array which is to be returned by the method getFields(). Check getFields() method",
-				new String[] { "city", "winner", "player_match" }, dataMunger.getFields(
+		assertNotNull(
+				"testGetColumnsWithMultipleWhereAndOrderByClauseFailure(): Select fields extractions failed. The query string can have multiple fields separated by comma after the 'select' keyword. The extracted fields is supposed to be stored in a String array which is to be returned by the method getFields(). Check getFields() method",
+				dataMunger.getFields(
 						"select city,winner,player_match from ipl1.csv where season > 2014 and city ='Bangalore' order by city"));
-		assertNotEquals("testGetColumnsWithMultipleWhereAndOrderByClauseFailure(): Retrieval of Base Query failed. BaseQuery contains from the beginning of the query till the where clause",
-				"select city,winner,player_match from ipl1.csv ", dataMunger.getBaseQuery(
+		assertNotNull(
+				"testGetColumnsWithMultipleWhereAndOrderByClauseFailure(): Retrieval of Base Query failed. BaseQuery contains from the beginning of the query till the where clause",
+				dataMunger.getBaseQuery(
 						"select city1,winner,player_match from ipl1.csv where season > 2014 and city ='Bangalore' order by city"));
-		assertNotEquals(
+		assertNotNull(
 				"testGetColumnsWithMultipleWhereAndOrderByClauseFailure(): Retrieval of conditions part failed. The conditions part contains starting from where keyword till the next keyword, which is either group by or order by clause. In case of absence of both group by and order by clause, it will contain till the end of the query string",
-				" season < 2014 and city ='bangalore' ", dataMunger.getConditionsPartQuery(
+				dataMunger.getConditionsPartQuery(
 						"select city,winner,player_match from ipl1.csv where season1 > 2014 and city ='Bangalore' order by city"));
-		assertNotEquals("testGetColumnsWithMultipleWhereAndOrderByClauseFailure(): Retrieval of conditions failed. Check getConditions() method. The query can contain one or multiple conditions. In case of multiple conditions, the conditions will be separated by AND/OR keywords",
-				new String[] { "season < 2014", "city ='bangalore'" }, dataMunger.getConditions(
+		assertNotNull(
+				"testGetColumnsWithMultipleWhereAndOrderByClauseFailure(): Retrieval of conditions failed. Check getConditions() method. The query can contain one or multiple conditions. In case of multiple conditions, the conditions will be separated by AND/OR keywords",
+				dataMunger.getConditions(
 						"select city,winner,player_match from ipl1.csv where season1 > 2014 and city ='Bangalore' order by city"));
-		assertNotEquals(
+		assertNotNull(
 				"testGetColumnsWithMultipleWhereAndOrderByClauseFailure(): Retrieval of Logical Operators failed. AND/OR keyword will exist in the query only if where conditions exists and it contains multiple conditions.The extracted logical operators will be stored in a String array which will be returned by the method. Please note that AND/OR can exist as a substring in the conditions as well. For eg: name='Alexander',color='Red' etc",
-				new String[] { "or" }, dataMunger.getLogicalOperators(
+				dataMunger.getLogicalOperators(
 						"select city,winner,player_match from ipl1.csv where season > 2014 and city ='Bangalore' order by city"));
-		assertNotEquals(
-				"testGetColumnsWithMultipleWhereAndOrderByClauseFailure(): Check getGroupByFields() method. The query string can contain more than one group by fields. it is also possible thant the query string might not contain group by clause at all. The field names, condition values might contain 'group' as a substring. For eg: newsgroup_name", 1,
+		assertNull(
+				"testGetColumnsWithMultipleWhereAndOrderByClauseFailure(): Check getGroupByFields() method. The query string can contain more than one group by fields. it is also possible thant the query string might not contain group by clause at all. The field names, condition values might contain 'group' as a substring. For eg: newsgroup_name",
 				dataMunger.getGroupByFields(
 						"select city,winner,player_match from ipl1.csv where season > 2014 and city ='Bangalore' order by city"));
-		assertNotEquals("testGetColumnsWithMultipleWhereAndOrderByClauseFailure(): Check getOrderByFields() method. The query string can contain more than one order by fields.The query string might not contain order by clause at all. The field names, condition values might contain 'order' as a substring. For eg: order_number,job_order",
-				new String[] { "city1" }, dataMunger.getOrderByFields(
+		assertNotNull(
+				"testGetColumnsWithMultipleWhereAndOrderByClauseFailure(): Check getOrderByFields() method. The query string can contain more than one order by fields.The query string might not contain order by clause at all. The field names, condition values might contain 'order' as a substring. For eg: order_number,job_order",
+				dataMunger.getOrderByFields(
 						"select city,winner,player_match from ipl1.csv where season > 2014 and city ='Bangalore' order by city"));
 	}
 
