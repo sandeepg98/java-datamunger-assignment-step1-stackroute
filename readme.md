@@ -185,25 +185,37 @@ The folders and files you see in this repositories, is how it is expected to be 
 #### To use this as a boilerplate for your new project, you can follow these steps
 
 1. Clone the base boilerplate in your local
+     
+    `git clone https://gitlab-dev.stackroute.in/datamunger-java/step-1-boilerplate.git assignment-solution-step1`
 
-	`git clone https://gitlab-dev.stackroute.in/datamunger-java/step-1-boilerplate.git`
+2. Navigate to assignment-solution-step1 after cloning
 
-2. Remove its remote or original reference
+    `cd assignment-solution-step1`
 
-	`git remote rm origin`
+3. Remove its remote or original reference
 
-3. Add your new repository reference as remote
+     `git remote rm origin`
 
-	`git remote add origin ssh://git@gitlab-dev.stackroute.in:2222/yourusername/your-new-project-repo.git`
+4. Create a Add your new repository reference as remote
 
-4. Commit and Push the project to git
+     `git remote add origin https://gitlab.training.com/{{yourusername}}/assignment-solution-step1.git`
 
-	`git commit -a -m "Initial commit | or place your comments according to your need"`
+Note: {{yourusername}} should be replaced by gitlab your username
 
-	`git push -u origin master`
+5. Check the status of your repo 
+     `git status`
 
-5. Check on the git repo online, if the files have been pushed
+6. Add all the files in your repo
 
+     `git add .`
+ 
+7. Commit and Push the project to git
+
+     `git commit -a -m "Initial commit | or place your comments according to your need"`
+
+     `git push -u origin master`
+
+Check on the git repo online, if the files have been pushed
 
 ### Important instructions for Participants
 > - We expect you to write the assignment on your own by following through the guidelines, learning plan, and the practice exercises
