@@ -5,15 +5,15 @@
 As an initial step of building a Utility to get meaningful information out of our Raw data - **as a first step you should be able to parse (decipher) our question. 
 In our computing terms, we call this a query.**Our system should be able to interpret this and break it into several parts - so that necessary actions can be triggered to fetch the required information in the proper format.
 
-`Note : Once you have cloned boilerplate from the given gitlab URL, import the project into eclipse. 
-Your project’s test cases might show compile time errors for methods, as you have not written the complete code.`
+**Note : Once you have cloned boilerplate from the given gitlab URL, import the project into eclipse. 
+Your project’s test cases might show compile time errors for methods, as you have not written the complete code.**
 
 ### STEP 1 - Deciphering the parts of the String (Query)
 
-Please note that the End User interacting with this utility will give out `SQL` like instructions and would expect the system to respond with necessary information. The system perceives this as a
+Please note that the End User interacting with this utility will give out **SQL** like instructions and would expect the system to respond with necessary information. The system perceives this as a
 String of characters and we should manipulate and break this string into appropriate Data Structures. For Instance,
 
-Query: `SELECT winner, Count( winner ) FROM ipl.csv WHERE win_by_runs > 100 GROUP BY winner ORDER BY winner;`
+Query: **SELECT winner, Count( winner ) FROM ipl.csv WHERE win_by_runs > 100 GROUP BY winner ORDER BY winner;**
 
 Sample Data: 
 
@@ -25,7 +25,7 @@ Sample Data:
 |Royal Challengers Bangalore  |   3       |
 
 
-Query: `SELECT city, winner FROM ipl.csv WHERE winner='Chennai Super Kings' AND city ='Abu Dhabi' AND season=2014;`
+Query: **SELECT city, winner FROM ipl.csv WHERE winner='Chennai Super Kings' AND city ='Abu Dhabi' AND season=2014;**
 
 Sample Data: 
 
@@ -155,7 +155,7 @@ b. Further enhance your program to now extract certain parts of the same query:
 
 ### Expected solution
 
-Displaying various `components/parts` of the query like `selected fields, conditional parts, aggregate fields, groupBy field, OrderBy field` 
+Displaying various **components/parts** of the query like **selected fields, conditional parts, aggregate fields, groupBy field, OrderBy field**
 
 ### Project structure
 
@@ -202,7 +202,7 @@ The folders and files you see in this repositories, is how it is expected to be 
 
      `git remote add origin https://gitlab.training.com/{{yourusername}}/assignment-solution-step1.git`
 
-     `Note: {{yourusername}} should be replaced by your username from gitlab`
+     **Note: {{yourusername}} should be replaced by your username from gitlab**
 
 5. Check the status of your repo 
      
