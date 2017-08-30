@@ -188,7 +188,7 @@ The folders and files you see in this repositories, is how it is expected to be 
      
     `git clone https://gitlab-dev.stackroute.in/datamunger-java/step-1-boilerplate.git assignment-solution-step1`
 
-2. Navigate to assignment-solution-step1 after cloning
+2. Navigate to `assignment-solution-step1` after cloning
 
     `cd assignment-solution-step1`
 
