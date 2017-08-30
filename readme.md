@@ -208,7 +208,7 @@ The folders and files you see in this repositories, is how it is expected to be 
      
      `git status`
 
-6. Add all the changes in your local repo
+6. Use the following command to update the index using the current content found in the working tree, to prepare the content staged for the next commit.
 
      `git add .`
  
