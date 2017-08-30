@@ -200,9 +200,10 @@ The folders and files you see in this repositories, is how it is expected to be 
 
      `git remote add origin https://gitlab.training.com/{{yourusername}}/assignment-solution-step1.git`
 
-     Note: {{yourusername}} should be replaced by gitlab your username
+     `Note: {{yourusername}} should be replaced by gitlab your username`
 
 5. Check the status of your repo 
+     
      `git status`
 
 6. Add all the files in your repo
@@ -215,7 +216,7 @@ The folders and files you see in this repositories, is how it is expected to be 
 
      `git push -u origin master`
 
-Check on the git repo online, if the files have been pushed
+8. Check on the git repo online, if the files have been pushed
 
 ### Important instructions for Participants
 > - We expect you to write the assignment on your own by following through the guidelines, learning plan, and the practice exercises
