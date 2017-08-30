@@ -184,11 +184,11 @@ The folders and files you see in this repositories, is how it is expected to be 
 
 #### To use this as a boilerplate for your new project, you can follow these steps
 
-1. Clone the base boilerplate in your local
+1. Clone the base boilerplate in the folder assignment-solution-step1 of your local machine
      
     `git clone https://gitlab-dev.stackroute.in/datamunger-java/step-1-boilerplate.git assignment-solution-step1`
 
-2. Navigate to `assignment-solution-step1` after cloning
+2. Navigate to assignment-solution-step1 folder
 
     `cd assignment-solution-step1`
 
