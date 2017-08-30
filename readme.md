@@ -2,8 +2,8 @@
 
 ### Problem Statement
 
-As an initial step of building a Utility to get meaningful information out of our Raw data - `as a first step you should be able to parse (decipher) our question. 
-In our computing terms, we call this a query.`Our system should be able to interpret this and break it into several parts - so that necessary actions can be triggered to fetch the required information in the proper format.
+As an initial step of building a Utility to get meaningful information out of our Raw data - **as a first step you should be able to parse (decipher) our question. 
+In our computing terms, we call this a query.**Our system should be able to interpret this and break it into several parts - so that necessary actions can be triggered to fetch the required information in the proper format.
 
 `Note : Once you have cloned boilerplate from the given gitlab URL, import the project into eclipse. 
 Your project’s test cases might show compile time errors for methods, as you have not written the complete code.`
