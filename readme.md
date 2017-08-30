@@ -196,7 +196,9 @@ The folders and files you see in this repositories, is how it is expected to be 
 
      `git remote rm origin`
 
-4. Create a Add your new repository reference as remote
+4. Create a new repo in gitlab named `assignment-solution-step1` as private repo
+
+5. Add your new repository reference as remote
 
      `git remote add origin https://gitlab.training.com/{{yourusername}}/assignment-solution-step1.git`
 
@@ -206,7 +208,7 @@ The folders and files you see in this repositories, is how it is expected to be 
      
      `git status`
 
-6. Add all the files in your repo
+6. Add all the changes in your local repo
 
      `git add .`
  
