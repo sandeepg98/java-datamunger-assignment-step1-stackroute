@@ -46,7 +46,7 @@ Few terms need to understand before starting the project.
 
     5. group by ->  get the records together based  on particular field.
 
-    6. aggregate ->  There are 5 aggregates are there called sum,count,min,max,avg.  
+    6. aggregate ->  There are 5 aggregates,they are "sum,count,min,max,avg".  
 
     7. Example query string :  select season,winner,player_match from ipl.csv where season > 2014 and city ='Bangalore';
 
