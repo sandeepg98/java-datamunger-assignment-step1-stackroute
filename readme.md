@@ -101,8 +101,7 @@ b. Further enhance your program to now extract certain parts of the same query:
 	    
 	    Input String : select * from ipl.csv where season > 2014 and city ='Bangalore'
 		Output String : 
-	                	Expressions:
-                                  season > 2014
+	                	          season > 2014 
                                   city ='bangalore'
 		                
 	v.  Extract the logical operators in sequence from the given query string. 
@@ -153,11 +152,12 @@ The folders and files you see in this repositories, is how it is expected to be 
 
 	Project
 	|
-	├── resources 			        // If project needs any data file, it can be found here/placed here, if data is huge they can be mounted, no need put it in your repository
+	├── data 			        // If project needs any data file, it can be found here/placed here, if data is huge they can be mounted, no need put it in your repository
 	|
 	├── com.stackroute.datamunger	    // all your java file will be stored in this package
-	|	└── test		                // all your test cases are written using JUnit, these test cases can be run by selecting Run As -> JUnit Test 
-	|	└── DataMunger.java	        // This is the main file, all your logic is written in this file only
+	|	└── DataMunger.java	            // This is the main file, all your logic is written in this file only
+	├── com.stackroute.datamunger.test // all your test cases will be stored in this package
+	|	└── DataMungerTest.java	        // all your test cases are written using JUnit, these test cases can be run by selecting Run As -> JUnit Test 
 	|
 	├── .classpath			        // This file is generated automatically while creating the project in eclipse
 	|
