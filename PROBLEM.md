@@ -2,64 +2,82 @@
 
 String Parsing  (Query string)
 
-a. Write a program to read the query string as input from the user and parse the given string into word
+a. Write a program to read the query string as input and split them into words. Print the output on console as given below:
 
-    Input : 	select * from Employee.csv  where  department  = ‘HR’ and salary>=3000
+    Input String : 	select * from ipl.csv where season > 2014 and city = 'Bangalore'
+    
+    Output String: 	select
+    			    * 
+    			    from 
+    			    ipl.csv  
+    			    where  
+    			    season
+    			    > 
+    			    2014
+    			    and 
+    			    city
+    			    =
+    			    'bangalore'
 
-    Output: 	[select ,*, from, Employee.csv,  where,  department,  =, ‘HR’, and, salary,>=,3000]
+b. Further enhance your program to now extract certain parts of the same query:
 
-    Note:  If the query contains group by, order by, having should also fetch
+	i. Get only file name from the query string.
+	
+		Input String : select * from ipl.csv where season > 2014 and city ='Bangalore'
+		Output String : ipl.csv
+	
+	
+	ii. Get only base part(before `where` word) of the query from the given query string. 
 
-b. Write a program to extract only the parts of query
+		Input String : select * from ipl.csv where season > 2014 and city ='Bangalore'
+		Output String : select * from ipl.csv 
 
-	i.  Get only base query from the query string. (without where condition)
-		Example : select * from Employee.csv  
+	iii. Get only filter part(after `where` word) of the query from the given query string. 
+	
+		Input String : select * from ipl.csv where season > 2014 and city ='Bangalore'
+		Output String : season > 2014 and city ='bangalore'
 
-	ii. Get only where condition part from the query
-		Example : department  = ‘HR’ and salary>=3000
-		Note: where condition part should not contain group by, order by, having parts.
-
-	iii. Parse the Where condition part based on to the operators
-		1. Relational Operators
-			a. Ex: if where condition is :   department  = ‘HR’ and salary>=3000
-			b. The output should be
-				i. Restriction - 1
-					1. propertyName : department
-					2. properyValue : HR
-					3. condtionalOperator : = 
-				ii. Restriction - 2
-					1. propertyName : salary
-					2. properyValue : 3000
-					3. condtionalOperator : >=
-
-		2. Logical Operators
-			a. Ex: if where condition is : department='Dev'  or department='HR' and salary>=3000 
-				i. Extract the logical operators in sequence and display/store in collection	
-					Output : [or,and]
-
-		3. Order by Operators
-			a. Ex query : select  *  from emp order by salary
-			b. The output should be
-				i. Order by field :   salary
-			c. Note:  ‘where’ may present in the query.
-
-
-        4. Group by Operators
-		    a. Ex Query : select * from emp group by department
-		    b. The output should be
-			    i. Group by field : department
-		    Note: ‘where’ may present in the query.
-
-	    5. Aggregate functions
-		    a. Ex: Query: select max(sal), min(age),count(*) from emp
-			    i. The output should be
-				    1. Aggregate function - 1
-					    a. Function name : max
-					    b. Field name        : sal
-				    2.  Aggregate function - 2
-					    a. Function name : min
-					    b. Field name        : age
-				    3.  Aggregate function - 3
-					    a. Function name : count
-					    b. Field name : *
-		Note:  Other parts like where clause, order by, group by may be present in the query.
+	iv. As there will be multiple conditions, seperate each condition and display in different line.
+	    
+	    Input String : select * from ipl.csv where season > 2014 and city ='Bangalore'
+		Output String : 
+	                	          season > 2014 
+                                  city ='bangalore'
+		                
+	v.  Extract the logical operators in sequence from the given query string. 
+	    Note: Logical operators are "and, or, not"
+	    
+	    Input String : select season,winner,player_match from ipl.csv where season > 2014 and city ='Bangalore' or date > '31-12-2014'
+	    Output String : 
+		        and
+		        or
+		        
+	vi. Extract the selected fields/information from the given query.
+	
+	    Input String : select city,winner,player_match from ipl.csv where season > 2014 and city ='Bangalore'
+		Output String :
+            	city
+            	winner
+            	player_match
+    
+    vii. Extract the order by field from the given string.
+        Note : user may need the information in sorted order of a particular field.
+        
+        Input String : select * from ipl.csv where season > 2016 and city='Bangalore' order by win_by_runs
+		Output String : win_by_runs
+    
+    viii. Extract the group by field from the given string.
+        Note : user may need the related information grouped together.
+        For Example they may require to see the information department wise.
+        
+        Input String : select team1, sum(win_by_runs) from ipl.csv where season > 2016 and city='Bangalore' group by team1
+		Output String : team1
+	
+	ix. User may required the information like who is getting maximum salary or minimum age etc.. these are called aggregate functions (minimum, maximum, count, average, sum)
+	
+	    Input String : select avg(win_by_wickets),min(win_by_runs) from ipl.csv 
+		Output String : 
+		             avg(win_by_wickets)
+                     min(win_by_runs)
+	            
+	   	Note:  Other parts like where clause, order by, group by may be present in the query.
