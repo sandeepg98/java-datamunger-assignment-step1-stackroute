@@ -45,7 +45,7 @@ Few terms need to understand before starting the project.
 
     6. aggregate ->  There are 5 aggregates,they are "sum,count,min,max,avg".  
 
-    7. Example query string :  select season,winner,player_match from ipl.csv where season > 2014 and city ='Bangalore';
+    7. Example query string :  select season,winner,player_match from ipl.csv where season > 2014 and city = 'Bangalore';
 
         a. fetching season, winner, player_match 
 
