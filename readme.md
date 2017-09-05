@@ -211,7 +211,7 @@ The folders and files you see in this repositories, is how it is expected to be 
 > - We expect you to write the assignment on your own by following through the guidelines, learning plan, and the practice exercises
 > - The code must not be plagirized, the mentors will randomly pick the submissions and may ask you to explain the solution
 > - The code must be properly indented, code structure maintained as per the boilerplate and properly commented
-> - Follow through the problem statement and stories shared with you
+> - Follow through the problem statement shared with you
 
 ### Further Instructions on Release
 
