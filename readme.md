@@ -17,7 +17,7 @@ Query: **SELECT winner, Count( winner ) FROM ipl.csv WHERE win_by_runs > 100 GRO
 
 Sample Data: 
 
-|    winner                   |  count    |
+|    winner                   |  count (winner)    |
 |:----------------------------|----------:|
 |Kings XI Punjab              |   1       |     
 |Kolkata Knight Riders        |   1       |
