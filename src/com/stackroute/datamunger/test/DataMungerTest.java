@@ -41,6 +41,18 @@ public class DataMungerTest {
 
 	}
 
+    @SuppressWarnings("deprecation")
+	@Test
+	public void testGetSplitStrings() {
+		
+		assertNotNull("testGetSplitStrings() : Splitting query into tokens returns null value", dataMunger.getSplitStrings("select * from ipl.csv"));
+		assertNotNull("testGetSplitStrings() : Splitting query into tokens returns null value", dataMunger.getSplitStrings("select count(city),sum(win_by_runs),min(win_by_runs),max(win_by_runs),avg(win_by_runs) from data/ipl.csv)"));
+		assertEquals("testGetSplitStrings() : Splitting query into tokens does not return the correct values",new String[] { "select","*","from","ipl.csv" }, dataMunger.getSplitStrings("select * from ipl.csv"));
+		assertEquals("testGetSplitStrings() : Splitting query into tokens does not return the correct values",new String[] { "select","count(city),sum(win_by_runs),min(win_by_runs),max(win_by_runs),avg(win_by_runs)","from","data/ipl.csv"}, dataMunger.getSplitStrings("select count(city),sum(win_by_runs),min(win_by_runs),max(win_by_runs),avg(win_by_runs) from data/ipl.csv"));
+		assertEquals("testGetSplitStrings() : Splitting query into tokens does not return the correct values",new String[] { "select","city,winner,player_match","from","ipl1.csv","where","season",">","2014","and","city","=","'bangalore'","order","by","city"}, dataMunger.getSplitStrings("select city,winner,player_match from ipl1.csv where season > 2014 and city = 'Bangalore' order by city"));
+		
+	}
+
 	@SuppressWarnings("deprecation")
 	@Test
 	public void testGetFileNameFailure() {
@@ -505,5 +517,17 @@ public class DataMungerTest {
 				dataMunger.getOrderByFields(
 						"select city,winner,player_match from ipl1.csv where season > 2014 and city ='Bangalore' order by city"));
 	}
+	
+	@SuppressWarnings("deprecation")
+	@Test
+	public void testGetAggregateFunctions() {
+		
+		assertNull("testGetAggregateFunctions() : Invalid aggregate columns displayed query into tokens returns null value", dataMunger.getAggregateFunctions("select * from ipl.csv"));
+		assertNotNull("testGetAggregateFunctions() : Aggregate function returns null",dataMunger.getAggregateFunctions("select count(city),sum(win_by_runs),min(win_by_runs),max(win_by_runs),avg(win_by_runs) from data/ipl.csv"));
+		assertEquals("testGetAggregateFunctions() : Aggregate function does not return the correct values",new String[] { "count(city)","sum(win_by_runs)","min(win_by_runs)","max(win_by_runs)","avg(win_by_runs)"}, dataMunger.getAggregateFunctions("select count(city),sum(win_by_runs),min(win_by_runs),max(win_by_runs),avg(win_by_runs) from data/ipl.csv"));
+		assertEquals("testGetAggregateFunctions() : Aggregate function does not return the correct values",new String[] { "count(city)","sum(win_by_runs)","min(win_by_runs)","max(win_by_runs)","avg(win_by_runs)"}, dataMunger.getAggregateFunctions("select count(city),sum(win_by_runs),min(win_by_runs),max(win_by_runs),avg(win_by_runs) from data/ipl.csv where season > 2014"));
+			
+	}
+
 
 }
