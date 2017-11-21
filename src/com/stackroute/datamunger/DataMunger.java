@@ -1,7 +1,32 @@
 package com.stackroute.datamunger;
+/*There are total 5 DataMungertest file:
+ * 
+ * 1)DataMungerTestTask1.java file is for testing following 3 methods
+ * a)getSplitStrings()  b) getFileName()  c) getBaseQuery()
+ * 
+ * Once you implement the above 3 methods,run DataMungerTestTask1.java
+ * 
+ * 2)DataMungerTestTask2.java file is for testing following 3 methods
+ * a)getFields() b) getConditionsPartQuery() c) getConditions()
+ * 
+ * Once you implement the above 3 methods,run DataMungerTestTask2.java
+ * 
+ * 3)DataMungerTestTask3.java file is for testing following 2 methods
+ * a)getLogicalOperators() b) getOrderByFields()
+ * 
+ * Once you implement the above 2 methods,run DataMungerTestTask3.java
+ * 
+ * 4)DataMungerTestTask4.java file is for testing following 2 methods
+ * a)getGroupByFields()  b) getAggregateFunctions()
+ * 
+ * Once you implement the above 2 methods,run DataMungerTestTask4.java
+ * 
+ * Once you implement all the methods run DataMungerTest.java.This test case consist of all
+ * the test cases together.
+ */
+
 
 public class DataMunger {
-
 
 	/*
 	 * this method will split the query string based on space into an array of words
@@ -22,7 +47,7 @@ public class DataMunger {
 	 * 
 	 * Please consider this while extracting the file name in this method.
 	 */
-	public String getFile(String queryString) {
+	public String getFileName(String queryString) {
 
 		return null;
 	}
@@ -42,7 +67,25 @@ public class DataMunger {
 	public String getBaseQuery(String queryString) {
 
 		return null;
+	}
+	
+	/*
+	 * This method will extract the fields to be selected from the query string. The
+	 * query string can have multiple fields separated by comma. The extracted
+	 * fields will be stored in a String array which is to be printed in console as
+	 * well as to be returned by the method
+	 * 
+	 * Note: 
+	 * ------ 
+	 * 1. The field name or value in the condition can contain keywords
+	 * as a substring. 
+	 * For eg: from_city,job_order_no,group_no etc. 
+	 * 2. The field name can contain '*'
+	 * 
+	 */
+	public String[] getFields(String queryString) {
 
+		return null;
 	}
 
 	/*
@@ -60,7 +103,6 @@ public class DataMunger {
 	public String getConditionsPartQuery(String queryString) {
 
 		return null;
-
 	}
 
 	/*
@@ -71,7 +113,7 @@ public class DataMunger {
 	 * Input: select city,winner,player_match from ipl.csv where season > 2014 and city
 	 * ='Bangalore'
 	 * 
-	 * This method will return a string array ["season > 2014","city ='Bangalore'"]
+	 * This method will return a string array ["season > 2014","city ='bangalore'"]
 	 * and print the array
 	 * 
 	 * Note: 
@@ -102,27 +144,6 @@ public class DataMunger {
 	public String[] getLogicalOperators(String queryString) {
 
 		return null;
-
-	}
-
-	/*
-	 * This method will extract the fields to be selected from the query string. The
-	 * query string can have multiple fields separated by comma. The extracted
-	 * fields will be stored in a String array which is to be printed in console as
-	 * well as to be returned by the method
-	 * 
-	 * Note: 
-	 * ------ 
-	 * 1. The field name or value in the condition can contain keywords
-	 * as a substring. 
-	 * For eg: from_city,job_order_no,group_no etc. 
-	 * 2. The field name can contain '*'
-	 * 
-	 */
-	public String[] getFields(String queryString) {
-
-		return null;
-
 	}
 
 	/*
@@ -157,13 +178,11 @@ public class DataMunger {
 	}
 
 	/*
-	 * This method extracts the aggregate functions from the query string. 
-	 * Note:
-	 * ------ 
-	 * 1. aggregate functions will start with "sum"/"count"/"min"/"max"/"avg"
-	 * followed by "(" 
-	 * 2. The field names might contain"sum"/"count"/"min"/"max"/"avg" as a substring.
-	 * For eg: account_number,consumed_qty,nominee_name
+	 * This method extracts the aggregate functions from the query string. Note:
+	 * ------ 1. aggregate functions will start with
+	 * "sum"/"count"/"min"/"max"/"avg" followed by "(" 2. The field names might
+	 * contain"sum"/"count"/"min"/"max"/"avg" as a substring. For eg:
+	 * account_number,consumed_qty,nominee_name
 	 * 
 	 * Consider this while extracting the aggregate functions
 	 */
