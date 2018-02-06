@@ -5,7 +5,7 @@ String Parsing  (Query string)
 
 ## Our task 1 involves three steps, given below:
 
-1) Write a program to read the query string as input and split them into words. Print the output on console as given below:
+1) Write a program to read the query string as input and split them into words. Print the output on the console as given below:
 
     Input String : 	select * from ipl.csv where season > 2014 and city = 'Bangalore'
     
@@ -22,7 +22,7 @@ String Parsing  (Query string)
     			     =
     			     'bangalore'
 
-2) Further enhance your program to now extract certain parts of the same query:
+2) Further enhance your program to extract certain parts of the same query:
 
 	i. Get only file name from the query string.
 	
@@ -34,7 +34,7 @@ String Parsing  (Query string)
 		Input String : select * from ipl.csv where season > 2014 and city = 'Bangalore'
 		Output String : select * from ipl.csv 
 
-After all the logic are written for these methods run DataMungerTestTask1.java file
+After all the logic is written for these methods run DataMungerTestTask1.java file
 -----------------------------------------------------------------------------------
 
 ## Our task II involves three steps, given below:
@@ -49,7 +49,7 @@ After all the logic are written for these methods run DataMungerTestTask1.java f
 
 
 2)Get only filter part(after `where` word before'group by or order by' if they exist 
-  in query) of the query from the given query string. 
+  in the query) of the query from the given query string. 
 	
 		Input String : select * from ipl.csv where season > 2014 and city ='Bangalore'
 		Output String : season > 2014 and city ='bangalore'
@@ -59,13 +59,13 @@ After all the logic are written for these methods run DataMungerTestTask1.java f
 		Output String : season > 2014 or city ='bangalore
 
 
-3) As there will be multiple conditions, seperate each condition and display in     	different line.
+3) As there will be multiple conditions, separate each condition and display in different line.
 	    
 	    Input String : select * from ipl.csv where season > 2014 and city ='Bangalore'
 		Output String : season > 2014 
                          city ='bangalore'
                          
-After all the logic are written for these methods run DataMungerTestTask2.java file.   
+After all the logic is written for these methods run DataMungerTestTask2.java file.   
 ----------------------------------------------------------------------------------- 
 
 ##Our task III involves two steps, given below:            
@@ -79,12 +79,12 @@ After all the logic are written for these methods run DataMungerTestTask2.java f
 		               or
 		        
 2)Extract the order by field from the given string.
-  Note : user may need the information in sorted order of a particular field.
+  Note : The user may need the information in sorted order of a particular field.
         
      Input String : select * from ipl.csv where season > 2016 and city='Bangalore' order by    					   win_by_runs
 	Output String : win_by_runs
  
-After all the logic are written for these methods run DataMungerTestTask3.java file. 
+After all the logic is written for these methods run DataMungerTestTask3.java file. 
 ----------------------------------------------------------------------
 
 ##Our task IV involves two steps, given below:    
@@ -96,7 +96,7 @@ After all the logic are written for these methods run DataMungerTestTask3.java f
         Input String : select team1, city from ipl.csv where season > 2016 and 	                     city ='Bangalore' group by team1
 		Output String : team1
 	
-2) User may required the information like who is getting maximum salary or minimum age etc.. these are called aggregate functions (minimum, maximum, count, average, sum)
+2) User may require the information like who is getting maximum salary or minimum age etc.. these are called aggregate functions (minimum, maximum, count, average, sum)
 	Input String : select avg(win_by_wickets),min(win_by_runs) from ipl.csv 
 	Output String : 
 		            avg(win_by_wickets)
@@ -104,7 +104,7 @@ After all the logic are written for these methods run DataMungerTestTask3.java f
 	            
 	   	Note:  Other parts like where clause, order by, group by may be present in the query.
 	   	
-After all the logic are written for these methods run DataMungerTestTask4.java file.
+After all the logic is written for these methods run DataMungerTestTask4.java file.
 ------------------------------------------------------------------------------
 
 At the end of all the methods Implementation done run DataMungertest.java file.  	   	
