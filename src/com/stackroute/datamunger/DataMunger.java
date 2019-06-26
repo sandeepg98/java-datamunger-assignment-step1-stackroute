@@ -35,7 +35,7 @@ public class DataMunger {
 
 	public String[] getSplitStrings(String queryString) {
 
-		return null;
+		return queryString.toLowerCase().split(" ");
 	}
 
 	/*
@@ -47,8 +47,7 @@ public class DataMunger {
 	 */
 
 	public String getFileName(String queryString) {
-
-		return null;
+		return (queryString.substring(queryString.indexOf("from") + 5 , queryString.indexOf("csv") + 3));
 	}
 
 	/*
@@ -63,7 +62,7 @@ public class DataMunger {
 	
 	public String getBaseQuery(String queryString) {
 
-		return null;
+		return (queryString.substring(0 , queryString.indexOf("where")-1));
 	}
 
 	/*
@@ -80,7 +79,7 @@ public class DataMunger {
 	
 	public String[] getFields(String queryString) {
 
-		return null;
+		return (queryString.substring(queryString.indexOf("select") + 7 , queryString.indexOf("from") - 1).split(","));
 	}
 
 	/*
@@ -95,7 +94,12 @@ public class DataMunger {
 	
 	public String getConditionsPartQuery(String queryString) {
 
-		return null;
+		if(queryString.indexOf("group by") != -1)
+			return (queryString.substring(queryString.indexOf("where") + 6 , queryString.indexOf("group by") - 1));
+		else if(queryString.indexOf("order by") != -1)
+			return (queryString.substring(queryString.indexOf("where") + 6 , queryString.indexOf("order by") - 1));
+		else
+			return (queryString.toLowerCase().substring(queryString.indexOf("where") + 6 , queryString.length()));
 	}
 
 	/*
@@ -115,7 +119,18 @@ public class DataMunger {
 
 	public String[] getConditions(String queryString) {
 
-		return null;
+		if(!queryString.contains("where"))
+			return null;
+
+		queryString = queryString.replace(" and ",",");
+		queryString = queryString.replace(" or ",",");
+
+		if(queryString.contains("group"))
+			return queryString.substring(queryString.indexOf("where")+6, queryString.indexOf("group")-1).toLowerCase().split(",");
+		else if(queryString.contains("order"))
+			return queryString.substring(queryString.indexOf("where")+6, queryString.indexOf("order")-1).toLowerCase().split(",");
+		else
+			return queryString.substring(queryString.indexOf("where")+6, queryString.length()).toLowerCase().split(",");
 	}
 
 	/*
@@ -131,7 +146,27 @@ public class DataMunger {
 
 	public String[] getLogicalOperators(String queryString) {
 
-		return null;
+		String[] queryArray = queryString.split(" ");
+		int count = 0, index = 0;
+
+		for(String str:queryArray)
+		{
+			if(str.equals("and") || str.equals("or"))
+				count++;
+		}
+
+		if(count == 0) return null;
+
+		String[] result = new String[count];
+
+		for(int i=0; i<queryArray.length; i++){
+			if(queryArray[i].equals("and") || queryArray[i].equals("or")){
+				result[index] = queryArray[i];
+				index++;
+			}
+		}
+
+		return result;
 	}
 
 	/*
@@ -144,7 +179,10 @@ public class DataMunger {
 
 	public String[] getOrderByFields(String queryString) {
 
-		return null;
+		if(queryString.indexOf("order by") == -1)
+			return null;
+		else
+			return queryString.substring(queryString.indexOf("order by") + 9).toLowerCase().split(" ");
 	}
 
 	/*
@@ -158,7 +196,10 @@ public class DataMunger {
 
 	public String[] getGroupByFields(String queryString) {
 
-		return null;
+		if(queryString.indexOf("group by") == -1)
+			return null;
+		else
+			return queryString.substring(queryString.indexOf("group by") + 9).toLowerCase().split(" ");
 	}
 
 	/*
@@ -173,7 +214,28 @@ public class DataMunger {
 
 	public String[] getAggregateFunctions(String queryString) {
 
-		return null;
+		queryString = queryString.replace(',',' ');
+		String[] queryArray = queryString.split(" ");
+		int count = 0, index = 0;
+
+		for(String str:queryArray)
+		{
+			if(str.contains("count") || str.contains("sum") || str.contains("max") || str.contains("min") || str.contains("avg"))
+				count++;
+		}
+
+		if(count == 0) return null;
+
+		String[] result = new String[count];
+
+		for(int i=0; i<queryArray.length; i++){
+			if(queryArray[i].contains("count") || queryArray[i].contains("sum") || queryArray[i].contains("max") || queryArray[i].contains("min") || queryArray[i].contains("avg")){
+				result[index] = queryArray[i];
+				index++;
+			}
+		}
+
+		return result;
 	}
 
 }
